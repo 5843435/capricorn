@@ -2,12 +2,6 @@ class TypeController < ApplicationController
   def index
 #    @type = params[:type]
 #   楽天booksAPI
-    RakutenWebService.configuration do |c|
-      c.application_id = ENV["APPID"]
-      c.affiliate_id = ENV["AFID"]
-    end
-    @books = RakutenWebService::Books::Book.search(:title => 'Ruby')
-    @type = params[:type]
     case @type
     when 1
       @type = "マーケティング" 
@@ -81,5 +75,10 @@ class TypeController < ApplicationController
       設計、開発、運営、評価を実施できるようになりましょう。
       "
     end
+    RakutenWebService.configuration do |c|
+      c.application_id = ENV["APPID"]
+      c.affiliate_id = ENV["AFID"]
+    end
+    @books = RakutenWebService::Books::Book.search(:title => @type)
   end
 end
