@@ -1,12 +1,21 @@
 
-<form method="post" action="/type/index">
+<%= form_tag('/type/index', :method => :post) do %>
 
 <p>
 <select name="type">
-<option value="0">SE</option>
-<option value="1">PM</option>
+<option value="1">マーケティング</option>
+<option value="2">セールス</option>
+<option value="3">コンサルタント</option>
+<option value="4">ITアーキテクト</option>
+<option value="5">プロジェクトマネジメント</option>
+<option value="6">ITスペシャリスト</option>
+<option value="7">アプリケーションスペシャリスト</option>
+<option value="8">ソフトウェアデベロップメント</option>
+<option value="9">カスタマーサービス</option>
+<option value="10">ITサービスマネジメント</option>
 </select>
 </p>
 <p><input type="submit" value="検索結果"></p>
 
-</form>
+
+<% end %>
