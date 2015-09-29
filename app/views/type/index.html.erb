@@ -3,6 +3,8 @@
 <p><b>■あなたへの格言</b><br><%= simple_format(h(@text)) %></p>
 <p><a href='#' onClick="history.back(); return false">戻る</a><p>
 
+<h1>楽天BooksAPIからの検索結果</h1>
+
       <% @books.each do |book| %>
       <tr>
         <td><%= book.title %></td>
