@@ -36,14 +36,14 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
-  config.action_mailer.default_url_options = { host: 'e5843436.cloudapp.net' }
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
     port: 587,
-    user_name: 'akinobu.katou@gmail.com',
-    password: 'Jpn12008',
+    user_name: 'username@gmail.com',
+    password: 'password',
     authentication: :plain,
     enable_starttls_auto: true
   }
