@@ -10,13 +10,13 @@ class TypeController < ApplicationController
     @days  = params[:stock].to_i/3.5
 
     #楽天ブックスAPIによるデータ取得
-    =begin
+=begin
     RakutenWebService.configuration do |c|
       c.application_id = ENV["APPID"]
       c.affiliate_id = ENV["AFID"]
     end
     @books = RakutenWebService::Books::Book.search(:title => @type)
     #binding.pry
-    =end
+=end
   end
 end
