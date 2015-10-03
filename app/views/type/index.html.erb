@@ -1,8 +1,15 @@
  <div class="container">
  <div class="table-responsive">
 
-<h2>結果表示</h2>
 <p><b>残ロール数<%= @stock %></b>です。</p>
+  <% @instance_div = @stock.to_i.div(10) %>
+   <% @instance_div.times{ %>
+    <img class="img-portfolio img-responsive" width="80" height="80" src="/assets/icons/toiletpaper.png">
+   <% } %>
+  <% @instance_modulo = @stock.to_i.modulo(10) %>
+   <% @instance_modulo.times { %>
+    <img class="img-portfolio img-responsive" width="20" height="20" src="/assets/icons/toiletpaper.png">
+   <% } %>
 <p>あと<%= @days.floor %>日でなくなります。</p>
 <button class="btn btn-default"><a href='#' onClick="history.back(); return false">戻る</a></button>
  </div>
