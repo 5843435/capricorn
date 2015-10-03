@@ -7,7 +7,7 @@ class TypeController < ApplicationController
     #トップページのフォームで渡される値を受けとる（トイレットペーパーの残数）
     @stock = params[:stock]
     #男性の1日の平均使用量(メートル)からあと何日で在庫がなくなるか計算する
-    @days  = params[:stock].to_i/3.5
+    @days  = (params[:stock].to_i/3.5)*(60)
 
     #楽天ブックスAPIによるデータ取得
 =begin
