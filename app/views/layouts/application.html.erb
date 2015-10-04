@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
         <nav>
             <% if user_signed_in? %>
-                Hello <%= current_user.email %><br>
+                <strong><%= current_user.email %></strong> さん　ようこそ<br />
                 <%= link_to 'プロフィール変更', edit_user_registration_path %>
                 <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
             <% else %>
