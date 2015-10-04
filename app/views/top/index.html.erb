@@ -17,9 +17,16 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h3>トイレットペーパーはあと何ロールありますか？</h3>
+
+                      <%# form_tag(:controller => type, :action => index) %>
+                        <div><%#= text_field :stock, '' %></div>
+                        <%#= submit_tag "いつ頃無くなるかな" %>
+                      <%# end %>
+
                     <form action="/type/index" accept-charset="UTF-8" method="post">
                     <input type="number" name="stock" value="12" class="btn btn-dark">
                     <input type="submit" value="いつ頃無くなるかな" class="btn btn-dark"></form>
+
                 </div>
             </div>
         </div>
@@ -172,3 +179,34 @@
         </iframe>
     </section>
 
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 text-center">
+                    <h4><strong>Capricorn</strong>
+                    </h4>
+                    <p>1-10-40 Higashi-Ooi<br>Shinagawa-Ku Tokyo 140-0011</p>
+                    <ul class="list-unstyled">
+                        <gli><i class="fa fa-phone fa-fw"></i> (03)3472-7831</li>
+                        <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:name@example.com">name@example.com</a>
+                        </li>
+                    </ul>
+                    <br>
+                    <ul class="list-inline">
+                        <li>
+                            <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
+                        </li>
+                    </ul>
+                    <hr class="small">
+                    <p class="text-muted">Copyright &copy; Capricorn 2015</p>
+                </div>
+            </div>
+        </div>
+    </footer>
