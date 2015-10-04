@@ -4,9 +4,32 @@
   <%= devise_error_messages! %>
 
   <div class="field">
+    <%= f.label :お名前 %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
     <%= f.label :メールアドレス %><br />
     <%= f.email_field :email, autofocus: true %>
   </div>
+
+  <div class="field">
+    <%= f.label :生年月日 %><br />
+    <%= f.date_select :birthday %>
+  </div>
+
+  <div class="field">
+    <%= f.label :性別 %><br />
+    <label><%= f.radio_button :sex, "0" %>男</label>
+    <label><%= f.radio_button :sex, "1" %>女</label>
+  </div>
+
+  <div class="field">
+    <%= f.label :家族構成 %><br />
+    男：<%= f.select :family_men,  {"0" => "0", "1" => "1", "2" => "2", "3" => "3", "4" => "4", "5" => "5", "6" => "6", "7" => "7"} %>人
+    女：<%= f.select :family_women,  {"0" => "0", "1" => "1", "2" => "2", "3" => "3", "4" => "4", "5" => "5", "6" => "6", "7" => "7"} %>人
+  </div>
+
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
@@ -23,7 +46,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :現在のパスワード %> <i>(パスワードを変更する場合は現在のパスワードの入力が必要です)</i><br />
+    <%= f.label :現在のパスワード %> <i>(変更する場合は現在のパスワードの入力が必要です)</i><br />
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
 
