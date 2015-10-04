@@ -1,16 +1,17 @@
  <div class="container">
  <div class="table-responsive">
 
-<p><b>残ロール数<%= @stock %></b>です。</p>
+<p><b>トイレットペーパーの残りロール数は <%= @stock %></b> 本です。</p>
   <% @instance_div = @stock.to_i.div(10) %>
    <% @instance_div.times{ %>
-    <img class="img-portfolio img-responsive" width="80" height="80" src="/assets/icons/toiletpaper10.png">
+    <img class="img-portfolio" width="80" height="80" src="/assets/icons/toiletpaper10.png">
    <% } %>
   <% @instance_modulo = @stock.to_i.modulo(10) %>
    <% @instance_modulo.times { %>
-    <img class="img-portfolio img-responsive" width="30" height="30" src="/assets/icons/toiletpaper.png">
+    <img class="img-portfolio" width="30" height="30" src="/assets/icons/toiletpaper.png">
    <% } %>
-<p>あと<%= @days.floor %>日でなくなります。</p>
+<p>あと <strong><%= @days.floor %></strong> 日でなくなります。</p>
+<p>1日の家庭での消費量は <strong><%= @consume_oneday %>m</strong> です。</p>
 <button class="btn btn-default"><a href='#' onClick="history.back(); return false">戻る</a></button>
  </div>
  </div>
