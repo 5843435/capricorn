@@ -10,8 +10,8 @@
    <% @instance_modulo.times { %>
     <img class="img-portfolio" width="30" height="30" src="/assets/icons/toiletpaper.png">
    <% } %>
-<p>あと <strong><%= @days.floor %></strong> 日でなくなります。</p>
-<p>1日の家庭での消費量は <strong><%= @consume_oneday %>m</strong> です。</p>
+<p><strong><%= @end_day.year%>年<%= @end_day.month %>月<%= @end_day.day %>日</strong> になくなります。</p>
+<p>あなたのご家庭の1日の消費量は <strong><%= @consume_oneday %>m</strong> です。</p>
 <button class="btn btn-default"><a href='#' onClick="history.back(); return false">戻る</a></button>
  </div>
  </div>
