@@ -1,7 +1,4 @@
 class TypeController < ApplicationController
-#トップページのフォームでCSRF対策を無効化する
-#http://www.mk-mode.com/octopress/2014/04/15/rails-disable-csrf-protection/
-  protect_from_forgery except: :index
 
   def index
     #トップページのフォームで渡される値を受けとる（トイレットペーパーの残数）
