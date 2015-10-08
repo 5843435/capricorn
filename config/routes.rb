@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :stocks do
+    resources :items
+  end
+
   devise_for :users
   get 'top/index'
 
