@@ -43,6 +43,13 @@ GEM
     builder (3.2.2)
     byebug (5.0.0)
       columnize (= 0.9.0)
+    capybara (2.2.1)
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
+    cliver (0.3.2)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -52,6 +59,7 @@ GEM
       execjs
     coffee-script-source (1.9.1.1)
     columnize (0.9.0)
+    database_cleaner (1.2.0)
     debug_inspector (0.0.2)
     devise (3.5.2)
       bcrypt (~> 3.0)
@@ -60,8 +68,14 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.6.0)
+    factory_girl (4.4.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.4.1)
+      factory_girl (~> 4.4.0)
+      railties (>= 3.0.0)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.10.0)
@@ -92,6 +106,11 @@ GEM
       mini_portile (~> 0.6.0)
     orm_adapter (0.5.0)
     pg (0.18.3)
+    poltergeist (1.5.1)
+      capybara (~> 2.1)
+      cliver (~> 0.3.1)
+      multi_json (~> 1.0)
+      websocket-driver (>= 0.2.0)
     pry (0.10.2)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -142,6 +161,22 @@ GEM
     ref (2.0.0)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
+    rspec-core (3.0.4)
+      rspec-support (~> 3.0.0)
+    rspec-expectations (3.0.4)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.0.0)
+    rspec-mocks (3.0.4)
+      rspec-support (~> 3.0.0)
+    rspec-rails (3.0.0)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 3.0.0)
+      rspec-expectations (~> 3.0.0)
+      rspec-mocks (~> 3.0.0)
+      rspec-support (~> 3.0.0)
+    rspec-support (3.0.4)
     sass (3.4.18)
     sass-rails (5.0.4)
       railties (>= 4.0.0, < 5.0)
@@ -152,6 +187,8 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    shoulda-matchers (2.6.2)
+      activesupport (>= 3.0.0)
     slop (3.6.0)
     spring (1.4.0)
     sprockets (3.3.5)
@@ -183,6 +220,11 @@ GEM
       binding_of_caller (>= 0.7.2)
       railties (>= 4.0)
       sprockets-rails (>= 2.0, < 4.0)
+    websocket-driver (0.6.2)
+      websocket-extensions (>= 0.1.0)
+    websocket-extensions (0.1.2)
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
     yard (0.8.7.6)
 
 PLATFORMS
@@ -191,19 +233,25 @@ PLATFORMS
 DEPENDENCIES
   bcrypt (~> 3.1.7)
   byebug
+  capybara (~> 2.2.1)
   coffee-rails (~> 4.1.0)
+  database_cleaner (~> 1.2.0)
   devise
+  factory_girl_rails (~> 4.4.1)
   jbuilder (~> 2.0)
   jquery-rails
   pg
+  poltergeist (~> 1.5.0)
   pry-byebug
   pry-doc
   pry-rails
   pry-stack_explorer
   rails (= 4.2.3)
   rakuten_web_service
+  rspec-rails (= 3.0.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  shoulda-matchers (~> 2.6.0)
   spring
   sqlite3
   sqlite3-ruby
