@@ -168,7 +168,7 @@ GEM
       rspec-support (~> 3.0.0)
     rspec-mocks (3.0.4)
       rspec-support (~> 3.0.0)
-    rspec-rails (3.0.0)
+    rspec-rails (3.0.2)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
@@ -248,7 +248,7 @@ DEPENDENCIES
   pry-stack_explorer
   rails (= 4.2.3)
   rakuten_web_service
-  rspec-rails (= 3.0.0)
+  rspec-rails (= 3.0.2)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   shoulda-matchers (~> 2.6.0)
