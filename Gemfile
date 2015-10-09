@@ -37,7 +37,7 @@ gem 'devise'
 group :development, :test do
   gem 'sqlite3'
   gem 'sqlite3-ruby', :require => 'sqlite3'
-
+  
   gem 'pry-rails'  # rails console(もしくは、rails c)でirbの代わりにpryを使われる
   gem 'pry-doc'    # methodを表示
   gem 'pry-byebug' # デバッグを実施(Ruby 2.0以降で動作する)
@@ -51,5 +51,14 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  
+  # test
+  gem 'rspec-rails', '3.0.0'
+  gem 'shoulda-matchers', '~> 2.6.0'
+  gem 'factory_girl_rails', '~> 4.4.1'
+  gem 'capybara', '~> 2.2.1'
+  gem 'poltergeist', '~> 1.5.0'
+  gem 'database_cleaner', '~> 1.2.0'
+
 end
 
