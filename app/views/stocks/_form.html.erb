@@ -17,14 +17,14 @@
   </div>
   <div class="field">
     <%= f.label :item_id %><br>
-    <%= f.number_field :item_id %>
+    <%= f.select :item_id, @items.all.map{|t| [t.name, t.id]}, :include_blank => true %>
   </div>
   <div class="field">
-    <%= f.label :unit %><br>
+    <%= f.label :単位 %><br>
     <%= f.number_field :unit %>
   </div>
   <div class="field">
-    <%= f.label :num %><br>
+    <%= f.label :個数 %><br>
     <%= f.number_field :num %>
   </div>
   <div class="actions">

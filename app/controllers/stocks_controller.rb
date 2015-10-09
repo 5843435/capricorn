@@ -1,6 +1,14 @@
 class StocksController < ApplicationController
   before_action :set_stock, only: [:show, :edit, :update, :destroy]
 
+  # 登録画面を選択ボックス方式にするためモデルからデータを取り出す記述
+  before_filter :_get_item
+
+  def _get_item
+    @items = Item.all
+  end
+
+
   # GET /stocks
   # GET /stocks.json
   def index
