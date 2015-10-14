@@ -32,10 +32,8 @@
 
   <div class="field">
     <%= f.label :住所 %><br />
-    郵便番号<%= f.text_field :zipcode, autofocus: true %><br />
-    都道府県<%= f.text_field :prefecture, autofocus: true %><br />
-    市町村<%= f.text_field :city, autofocus: true %><br />
-    番地、建物名<%= f.text_field :street, autofocus: true %>
+    〒 <%= f.text_field :zipcode, autofocus: true, maxlength: "7", onKeyUp: "AjaxZip3.zip2addr(this,'','user[prefecture]','user[prefecture]');" %>
+    　<%= f.text_field :prefecture, disabled: true %><br />
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
