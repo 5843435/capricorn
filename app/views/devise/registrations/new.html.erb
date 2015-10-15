@@ -4,38 +4,20 @@
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.label :お名前 %><br />
-    <%= f.text_field :name, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
+    <%= f.label :メールアドレス %> [必須]<br />
     <%= f.email_field :email, autofocus: true %>
   </div>
 
   <div class="field">
-    <%= f.label :生年月日 %><br />
-    <%= f.date_select :birthday, :start_year => 1950, :end_year => (Time.now.year), :default => Date.new(1980, 1, 1) %>
-  </div>
-
-  <div class="field">
-    <%= f.label :性別 %>
-    <label><%= f.radio_button :sex, "0" %>男</label>
-    <label><%= f.radio_button :sex, "1" %>女</label>
-  </div>
-
-  <div class="field">
-    <%= f.label :家族構成 %><br />
+    <%= f.label :家族構成 %> [必須]<br />
     男：<%= f.select :family_men,  {"0" => "0", "1" => "1", "2" => "2", "3" => "3", "4" => "4", "5" => "5", "6" => "6", "7" => "7"} %>人
     女：<%= f.select :family_women,  {"0" => "0", "1" => "1", "2" => "2", "3" => "3", "4" => "4", "5" => "5", "6" => "6", "7" => "7"} %>人
   </div>
 
   <div class="field">
-    <%= f.label :住所 %><br />
-    郵便番号<%= f.text_field :zipcode, autofocus: true %><br />
-    都道府県<%= f.text_field :prefecture, autofocus: true %><br />
-    市町村<%= f.text_field :city, autofocus: true %><br />
-    番地、建物名<%= f.text_field :street, autofocus: true %>
+    <%= f.label :住所 %> [必須、郵便番号のみ入力可] <%= link_to '郵便番号検索', 'http://www.post.japanpost.jp/zipcode/', :target => "_blank" %><br />
+    〒 <%= f.text_field :zipcode, autofocus: true, maxlength: "7", onKeyUp: "AjaxZip3.zip2addr(this,'','user[address]','user[address]');" %>
+    　<%= f.text_field :address, readonly: true %><br />
   </div>
 
   <div class="field">
@@ -57,3 +39,5 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+
