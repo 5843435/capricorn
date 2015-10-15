@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # 一時的にメール確認機能を無効化（SMTPサーバが利用できないため）
-         #, :confirmable
+        # :confirmable
 
   # itemsテーブルとの紐づけ
   has_many :stocks
