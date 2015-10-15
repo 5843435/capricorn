@@ -4,18 +4,18 @@
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.label :メールアドレス %><br />
+    <%= f.label :メールアドレス %> [必須]<br />
     <%= f.email_field :email, autofocus: true %>
   </div>
 
   <div class="field">
-    <%= f.label :家族構成 %><br />
+    <%= f.label :家族構成 %> [必須]<br />
     男：<%= f.select :family_men,  {"0" => "0", "1" => "1", "2" => "2", "3" => "3", "4" => "4", "5" => "5", "6" => "6", "7" => "7"} %>人
     女：<%= f.select :family_women,  {"0" => "0", "1" => "1", "2" => "2", "3" => "3", "4" => "4", "5" => "5", "6" => "6", "7" => "7"} %>人
   </div>
 
   <div class="field">
-    <%= f.label :住所（郵便番号のみ入力可） %>郵便番号検索は<%= link_to 'こちら', 'http://www.post.japanpost.jp/zipcode/', :target => "_blank" %><br />
+    <%= f.label :住所 %> [必須、郵便番号のみ入力可] <%= link_to '郵便番号検索', 'http://www.post.japanpost.jp/zipcode/', :target => "_blank" %><br />
     〒 <%= f.text_field :zipcode, autofocus: true, maxlength: "7", onKeyUp: "AjaxZip3.zip2addr(this,'','user[address]','user[address]');" %>
     　<%= f.text_field :address, readonly: true %><br />
   </div>
