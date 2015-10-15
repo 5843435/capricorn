@@ -4,24 +4,8 @@
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.label :お名前 %><br />
-    <%= f.text_field :name, autofocus: true %>
-  </div>
-
-  <div class="field">
     <%= f.label :メールアドレス %><br />
     <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :生年月日 %><br />
-    <%= f.date_select :birthday, :start_year => 1950, :end_year => (Time.now.year), :default => Date.new(1980, 1, 1) %>
-  </div>
-
-  <div class="field">
-    <%= f.label :性別 %>
-    <label><%= f.radio_button :sex, "0" %>男</label>
-    <label><%= f.radio_button :sex, "1" %>女</label>
   </div>
 
   <div class="field">
@@ -31,9 +15,9 @@
   </div>
 
   <div class="field">
-    <%= f.label :住所 %><br />
+    <%= f.label :住所（郵便番号のみ入力可） %>郵便番号検索は<%= link_to 'こちら', 'http://www.post.japanpost.jp/zipcode/', :target => "_blank" %><br />
     〒 <%= f.text_field :zipcode, autofocus: true, maxlength: "7", onKeyUp: "AjaxZip3.zip2addr(this,'','user[prefecture]','user[prefecture]');" %>
-    　<%= f.text_field :prefecture, disabled: true %><br />
+    　<%= f.text_field :prefecture, readonly: true %><br />
   </div>
 
   <div class="field">
