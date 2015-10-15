@@ -48,15 +48,10 @@ ActiveRecord::Schema.define(version: 20151008121401) do
     t.string   "unconfirmed_email"
     t.datetime "created_at",                                    null: false
     t.datetime "updated_at",                                    null: false
-    t.string   "name"
-    t.date     "birthday"
-    t.integer  "sex"
     t.integer  "family_men"
     t.integer  "family_women"
     t.integer  "zipcode",                limit: 7
-    t.string   "prefecture"
-    t.string   "city"
-    t.string   "street"
+    t.string   "address"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

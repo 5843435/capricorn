@@ -16,8 +16,8 @@
 
   <div class="field">
     <%= f.label :住所（郵便番号のみ入力可） %>郵便番号検索は<%= link_to 'こちら', 'http://www.post.japanpost.jp/zipcode/', :target => "_blank" %><br />
-    〒 <%= f.text_field :zipcode, autofocus: true, maxlength: "7", onKeyUp: "AjaxZip3.zip2addr(this,'','user[prefecture]','user[prefecture]');" %>
-    　<%= f.text_field :prefecture, readonly: true %><br />
+    〒 <%= f.text_field :zipcode, autofocus: true, maxlength: "7", onKeyUp: "AjaxZip3.zip2addr(this,'','user[address]','user[address]');" %>
+    　<%= f.text_field :address %><br />
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
