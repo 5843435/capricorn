@@ -1,24 +1,32 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>User:</strong>
-  <%= @stock.user_id %>
+  <strong>商品名:</strong>
+  <%= @stock.item.name %>
 </p>
 
 <p>
-  <strong>Item:</strong>
-  <%= @stock.item_id %>
-</p>
-
-<p>
-  <strong>Unit:</strong>
+  <strong>単位:</strong>
   <%= @stock.unit %>
 </p>
 
 <p>
-  <strong>Num:</strong>
+  <strong>個数:</strong>
   <%= @stock.num %>
 </p>
 
-<%= link_to 'Edit', edit_stock_path(@stock) %> |
-<%= link_to 'Back', stocks_path %>
+<p>
+  <strong>1日当たりの消費量:</strong>
+  <%= @stock.item.spent_men + @stock.item.spent_women %>
+</p>
+
+<p>
+  <strong>なくなる日:</strong>
+  <% end_day = @stock.updated_at + (( @stock.num * @stock.unit / ( @stock.item.spent_men + @stock.item.spent_women )).floor * 24 * 3600 ) %>
+  <%= end_day.year %>年<%= end_day.month %>月<%= end_day.day %>日
+</p>
+
+
+<%#= link_to '編集', edit_stock_path(@stock) %>
+<%= link_to '一覧に戻る', stocks_path %> | 
+<%= link_to '削除', @stock, method: :delete, data: { confirm: '本当に削除しますか？' } %>
