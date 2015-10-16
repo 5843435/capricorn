@@ -11,12 +11,10 @@
     </div>
   <% end %>
 
+  <% user_id = current_user.id %>
+
   <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
-  </div>
-  <div class="field">
-    <%= f.label :item_id %><br>
+    <%= f.label :商品名 %><br>
     <%= f.select :item_id, @items.all.map{|t| [t.name, t.id]}, :include_blank => true %>
   </div>
   <div class="field">
