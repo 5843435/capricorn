@@ -59,6 +59,11 @@ group :development, :test do
   gem 'capybara', '~> 2.2.1'
   gem 'poltergeist', '~> 1.5.0'
   gem 'database_cleaner', '~> 1.2.0'
+  
+  #バッチ用
+  gem 'whenever', :require => false
 
+  gem 'hirb'         # モデルの出力結果を表形式で表示するGem
+  gem 'hirb-unicode' # 日本語などマルチバイト文字の出力時の出力結果のずれに対応
 end
 
