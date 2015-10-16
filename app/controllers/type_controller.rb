@@ -11,10 +11,10 @@ class TypeController < ApplicationController
         #if current_user.family_men.to_i > 0 && current_user.family_women.to_i > 0 then
             #1日の消費量計算
             consume_oneday = (current_user.family_men.to_i * man_consume_oneday) + (current_user.family_women * woman_consume_oneday)
-            if !current_user.prefecture.index("沖縄").nil? then
+            if !current_user.address.index("沖縄").nil? then
                 consume_oneday = consume_oneday*2
             end
-            if !current_user.prefecture.index("大分").nil? then
+            if !current_user.address.index("大分").nil? then
                 consume_oneday = consume_oneday/2
             end
         #end
