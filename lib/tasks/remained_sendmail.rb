@@ -4,14 +4,24 @@ class Tasks::RemainedSendmail
   #User = Struct.new("User", :name, :mail)
   MailInfo = Struct.new("MailInfo", :title, :text, :item, :url)
   def self.execute
-    puts "send mail"
-    #user = User.new("Kazuma", "kam.kaz.113@gmail.com")
-    users = User.find_by_id(1)
-    puts users.name
-    #users.each do |user|
-        #print("item_id = ", item.id)
-    #end
-    #mailinfo = MailInfo.new("test", "test mail.") 
-    #RemainedMailer.remained_email(user, mailinfo).deliver
+    #ユーザーの数ループ
+    User.count.times do |i|
+        #アイテムの数ループ
+        Item.count.times do |j|
+            stocks = Stock.find_by_sql(['select * from stocks where user_id = ? and item_id = ? order by updated_at desc limit 1', i+1, j+1])
+            if !stocks.nil? then
+                item = Item.find_by(:id => j+1)
+                now = DateTime.now
+                stocks.each {|stock|
+                    end_day = stock.updated_at + (( stock.num * stock.unit / ( item.spent_men + item.spent_women )).floor * 24 * 3600 )
+                    if end_day < now.next then
+                        user = User.find_by(:id => i+1)
+                        puts "send mail"
+                        RemainedMailer.remained_email(user, item).deliver
+                    end
+                } 
+            end
+        end
+    end
   end
 end
