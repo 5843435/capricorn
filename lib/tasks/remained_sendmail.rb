@@ -14,7 +14,7 @@ class Tasks::RemainedSendmail
                 now = DateTime.now
                 stocks.each {|stock|
                     end_day = stock.updated_at + (( stock.num * stock.unit / ( item.spent_men + item.spent_women )).floor * 24 * 3600 )
-                    if end_day < now.next then
+                    if end_day.next >  now then
                         user = User.find_by(:id => i+1)
                         puts "send mail"
                         RemainedMailer.remained_email(user, item).deliver
