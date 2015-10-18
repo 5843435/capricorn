@@ -16,7 +16,9 @@
 # every 4.days do
 #   runner "AnotherModel.prune_old_records"
 # end
-every 30.minutes do
+
+#TimeZoneがUTCになっているので-9時間する
+every 1.day, :at => '9:30 am' do
   runner "Tasks::RemainedSendmail.execute"
 end
 

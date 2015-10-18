@@ -11,12 +11,12 @@ class Tasks::RemainedSendmail
             stocks = Stock.find_by_sql(['select * from stocks where user_id = ? and item_id = ? order by updated_at desc limit 1', i+1, j+1])
             if !stocks.nil? then
                 item = Item.find_by(:id => j+1)
-                now = DateTime.now
+                now = Time.zone.today
                 stocks.each {|stock|
                     end_day = stock.updated_at + (( stock.num * stock.unit / ( item.spent_men + item.spent_women )).floor * 24 * 3600 )
-                    if end_day.next >  now then
+                    if end_day.to_date < now + 2.day then
                         user = User.find_by(:id => i+1)
-                        puts "send mail"
+                        puts user.email + ":" + item.name + ":send mail"
                         RemainedMailer.remained_email(user, item).deliver
                     end
                 } 
