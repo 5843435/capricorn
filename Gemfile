@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rakuten_web_service'
+#gem 'rakuten_web_service'
 ruby '2.2.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
