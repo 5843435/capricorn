@@ -65,5 +65,8 @@ group :development, :test do
 
   gem 'hirb'         # モデルの出力結果を表形式で表示するGem
   gem 'hirb-unicode' # 日本語などマルチバイト文字の出力時の出力結果のずれに対応
+
+  #画面遷移時のjquery動作安定のため
+  gem 'jquery-turbolinks'
 end
 
