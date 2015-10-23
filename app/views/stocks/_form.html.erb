@@ -1,6 +1,6 @@
 <%= form_for @stock, :html => { :class => "form-horizontal stock" } do |f| %>
 
-    <% if @stock.errors.any? %>
+  <% if @stock.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
       <div class="panel-heading">
         <h3 class="panel-title"><%= @stock.errors.count %> つのエラーがあります</h3>
@@ -23,21 +23,18 @@
     <div class="controls">
     <%= f.select :item_id, @items.all.map{|t| [t.name, t.id]}, {include_blank: false}, {class: 'form-control'} %>
     </div>
-    <%= error_span(@stock[:item_id]) %>
   </div>
   <div class="control-group">
     <%= f.label :単位, :class => 'control-label' %>
     <div class="controls">
       <%= f.number_field :unit, :class => 'form-control', :min => 1 %>
     </div>
-    <%= error_span(@stock[:unit]) %>
   </div>
   <div class="control-group">
     <%= f.label :個数, :class => 'control-label' %>
     <div class="controls">
       <%= f.number_field :num, :class => 'form-control', :min => 1 %>
     </div>
-    <%= error_span(@stock[:num]) %>
   </div>
   <br />
 

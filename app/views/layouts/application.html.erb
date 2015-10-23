@@ -2,7 +2,8 @@
 <html lang="ja">
 <head>
   <title>Capricorn</title>
-  <meta name="viewport" content="width=640,  user-scalable=yes,">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <script src="http://ajaxzip3.googlecode.com/svn/trunk/ajaxzip3/ajaxzip3.js" charset="UTF-8"></script>
@@ -17,9 +18,6 @@
         <ul class="sidebar-nav">
             <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
             <% if user_signed_in? %>
-                <li>
-                <a href="#top"  onclick = $("#menu-close").click(); >
-                <%= current_user.email %></a></li>
                 <li><%= link_to '登録アイテム一覧', stocks_path %></li>
                 <li><%= link_to 'プロフィール変更', edit_user_registration_path %></li>
                 <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
@@ -43,7 +41,6 @@
     </div>
   </div>
 </div>
-
 
     <!-- Custom Theme JavaScript -->
     <script>
