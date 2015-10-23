@@ -1,3 +1,10 @@
+    <% flash.each do |name, msg| %>
+      <div class="alert alert-<li><%= name == "notice" ? "success" : "error" %>">
+        <a class="close" data-dismiss="alert">×</a>
+        <%= msg %>
+      </div>
+    <% end %>
+
 
     <!-- Header -->
     <header id="top" class="header">
@@ -5,8 +12,14 @@
             <h1>Capricorn（仮）</h1>
             <h3>トイレに入ったら紙がない！　とならないために</h3>
             <br>
-            <a href="#action" class="btn btn-dark btn-lg">使ってみる</a>
-            <a href="#about" class="btn btn-dark btn-lg">会社概要</a>
+            <% if user_signed_in? %>
+              <%= link_to '登録アイテム一覧', stocks_path, :class => "btn btn-dark btn-lg" %>
+              <%= link_to 'プロフィール変更', edit_user_registration_path, :class => "btn btn-dark btn-lg" %>
+              <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, :class => "btn btn-dark btn-lg" %>
+            <% else %>
+              <%= link_to 'サインアップ', new_user_registration_path, :class => "btn btn-dark btn-lg" %>
+              <%= link_to 'ログイン', new_user_session_path, :class => "btn btn-dark btn-lg" %>
+            <% end %>
         </div>
     </header>
 

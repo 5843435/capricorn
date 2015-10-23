@@ -1,0 +1,27 @@
+<header>
+  <div class="navbar navbar-default" role="navigation">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="#">Capricorn</a>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <% if user_signed_in? %>
+                <strong><li><%= current_user.email %></strong> さん　ようこそ</li>
+                <li><%= link_to '登録アイテム一覧', stocks_path %></li>
+                <li><%= link_to 'プロフィール変更', edit_user_registration_path %>
+                <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+            <% else %>
+                <li><%= link_to 'サインアップ', new_user_registration_path %>
+                <li><%= link_to 'ログイン', new_user_session_path %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

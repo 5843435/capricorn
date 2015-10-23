@@ -1,31 +1,48 @@
-<%= form_for(@stock) do |f| %>
-  <% if @stock.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@stock.errors.count, "error") %> prohibited this stock from being saved:</h2>
+<%= form_for @stock, :html => { :class => "form-horizontal stock" } do |f| %>
 
-      <ul>
-      <% @stock.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <% if @stock.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @stock.errors.count %> つのエラーがあります</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @stock.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
   <% user_id = current_user.id %>
 
-  <div class="field">
-    <%= f.label :商品名 %><br>
-    <%= f.select :item_id, @items.all.map{|t| [t.name, t.id]}, :include_blank => true %>
+
+  <div class="control-group">
+    <%= f.label :商品名, :class => 'control-label' %>
+    <div class="controls">
+    <%= f.select :item_id, @items.all.map{|t| [t.name, t.id]}, {include_blank: false}, {class: 'form-control'} %>
+    </div>
+    <%= error_span(@stock[:item_id]) %>
   </div>
-  <div class="field">
-    <%= f.label :単位 %><br>
-    <%= f.number_field :unit %>
+  <div class="control-group">
+    <%= f.label :単位, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :unit, :class => 'form-control', :min => 1 %>
+    </div>
+    <%= error_span(@stock[:unit]) %>
   </div>
-  <div class="field">
-    <%= f.label :個数 %><br>
-    <%= f.number_field :num %>
+  <div class="control-group">
+    <%= f.label :個数, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :num, :class => 'form-control', :min => 1 %>
+    </div>
+    <%= error_span(@stock[:num]) %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <br />
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            stocks_path, :class => 'btn btn-default' %>
+
 <% end %>
