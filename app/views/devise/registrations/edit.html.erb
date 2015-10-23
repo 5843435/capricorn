@@ -1,6 +1,14 @@
 <h2>プロフィール変更</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'form-horizontal' }) do |f| %>
+
+<% flash.each do |name, msg| %>
+    <div class="alert alert-<li><%= name == "notice" ? "success" : "error" %>">
+      <a class="close" data-dismiss="alert">×</a>
+      <%= msg %>
+    </div>
+  <% end %>
+
 <%= devise_error_messages! %>
 
   <div class="form-group">
@@ -60,11 +68,13 @@
     </div>
 </div>
 
+<!--
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-6">
 <p><%= button_to "登録解除", registration_path(resource_name), data: { confirm: "本当に削除しますか？" }, method: :delete, class: 'btn btn-default btn-xs' %></p>
     </div>
 </div>
+-->
 
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-6">
