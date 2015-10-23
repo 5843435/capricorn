@@ -29,7 +29,7 @@
 
   <div class="form-group">
     <%= f.label :パスワード, class: "col-sm-2 control-label" %>
-    <div class="col-sm-6 form-inline">
+    <div class="col-sm-6">
     <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> 文字以上)</em>
@@ -39,7 +39,7 @@
 
   <div class="form-group">
     <%= f.label :パスワード（確認）, class: "col-sm-2 control-label"  %>
-    <div class="col-sm-6 form-inline">
+    <div class="col-sm-6">
     <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
     </div>
   </div>

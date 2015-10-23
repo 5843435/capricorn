@@ -1,51 +1,74 @@
 <h2>プロフィール変更</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'form-horizontal' }) do |f| %>
+<%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true %>
+  <div class="form-group">
+    <%= f.label :"メールアドレス[必須]", class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.email_field :email, class: "form-control", autofocus: true %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :家族構成 %><br />
-    男：<%= f.select :family_men,  {"0" => "0", "1" => "1", "2" => "2", "3" => "3", "4" => "4", "5" => "5", "6" => "6", "7" => "7"} %>人
-    女：<%= f.select :family_women,  {"0" => "0", "1" => "1", "2" => "2", "3" => "3", "4" => "4", "5" => "5", "6" => "6", "7" => "7"} %>人
+  <div class="form-group">
+    <%= f.label :"家族構成[必須]", class: "col-sm-2 control-label" %>
+    <div class="col-sm-6 form-inline">
+男：<%= f.select :family_men, {"0" => "0", "1" => "1", "2" => "2", "3" => "3", "4" => "4", "5" => "5", "6" => "6", "7" => "7"}, {}, {:class => 'form-control'} %>
+女：<%= f.select :family_women, {"0" => "0", "1" => "1", "2" => "2", "3" => "3", "4" => "4", "5" => "5", "6" => "6", "7" => "7"}, {}, {:class => 'form-control'} %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :住所（郵便番号のみ入力可） %>郵便番号検索は<%= link_to 'こちら', 'http://www.post.japanpost.jp/zipcode/', :target => "_blank" %><br />
-    〒 <%= f.text_field :zipcode, autofocus: true, maxlength: "7", onKeyUp: "AjaxZip3.zip2addr(this,'','user[address]','user[address]');" %>
-    　<%= f.text_field :address %><br />
+  <div class="form-group">
+    <%= f.label :"住所", class: "col-sm-2 control-label" %>
+    <div class="col-sm-6 form-inline">
+    〒 <%= f.text_field :zipcode, class: "form-control", autofocus: true, maxlength: "7", onKeyUp: "AjaxZip3.zip2addr(this,'','user[address]','user[address]');" %>
+    　<%= f.text_field :address, class: "form-control", disabled: true %>
+      <%= link_to '郵便番号検索', 'http://www.post.japanpost.jp/zipcode/', :target => "_blank" %>
+    </div>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :新しいパスワード %> <i>(変更しない場合は空白のまま)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+<div class="form-group">
+    <%= f.label :パスワード, class: 'col-sm-2 control-label'  %> <i>(変更しない場合は空白)</i>
+    <div class="col-sm-6">
+        <%= f.password_field :password, autocomplete: "off", class: 'form-control'  %>
+    </div>
+</div>
 
-  <div class="field">
-    <%= f.label :新しいパスワード（確認） %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :現在のパスワード %> <i>(変更する場合は現在のパスワードの入力が必要です)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
+<div class="form-group">
+    <%= f.label :パスワード（確認）, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-6">
+        <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control'  %>
+    </div>
+</div>
 
-  <div class="actions">
-    <%= f.submit "更新" %>
-  </div>
+<div class="form-group">
+    <%= f.label :現在のパスワード, class: 'col-sm-2 control-label' %> <i>(プロフィールを変更する場合は入力必須)</i>
+    <div class="col-sm-6">
+        <%= f.password_field :current_password, autocomplete: "off", class: 'form-control' %>
+    </div>
+</div>
+
+
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-6">
+        <%= f.submit "更新", class: "btn btn-primary" %>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-6">
+<p><%= button_to "登録解除", registration_path(resource_name), data: { confirm: "本当に削除しますか？" }, method: :delete, class: 'btn btn-default btn-xs' %></p>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-6">
+        <%= render "devise/shared/links" %>
+    </div>
+</div>
 <% end %>
-
-<h3>退会</h3>
-
-<p>登録解除する方はこちら <%= button_to "登録解除", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "戻る", :back %>
