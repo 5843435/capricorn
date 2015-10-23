@@ -15,15 +15,15 @@
 
   <div class="field">
     <%= f.label :商品名 %><br>
-    <%= f.select :item_id, @items.all.map{|t| [t.name, t.id]}, :include_blank => true %>
+    <%= f.select :item_id, @items.all.map{|t| [t.name, t.id]}, :include_blank => false,:onchange => "changeSelect()",:selected=>1 %>
   </div>
   <div class="field">
     <%= f.label :単位 %><br>
-    <%= f.number_field :unit %>
+    <%= f.select :unit, [['シングル 60m',60],['シングル 50m',50],['ダブル 30m',30],['ダブル 25m',25]], :selected=>60 %>
   </div>
   <div class="field">
     <%= f.label :個数 %><br>
-    <%= f.number_field :num %>
+    <%= f.number_field :num,:value=>12  %>
   </div>
   <div class="actions">
     <%= f.submit %>
