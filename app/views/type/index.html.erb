@@ -1,7 +1,7 @@
- <div class="container">
- <div class="table-responsive">
+<div class="page-header">
+  <h1>トイレットペーパーの残り</h1>
+</div>
 
-<p><b>トイレットペーパーの残りロール数は <%= @stock %></b> 本です。</p>
   <% @instance_div = @stock.to_i.div(10) %>
    <% @instance_div.times{ %>
     <img class="img-portfolio" width="80" height="80" src="/assets/icons/toiletpaper10.png">
@@ -10,8 +10,19 @@
    <% @instance_modulo.times { %>
     <img class="img-portfolio" width="30" height="30" src="/assets/icons/toiletpaper.png">
    <% } %>
-<p><strong><%= @end_day.year%>年<%= @end_day.month %>月<%= @end_day.day %>日</strong> になくなります。</p>
-<p>あなたのご家庭の1日の消費量は <strong><%= @consume_oneday %>m</strong> です。</p>
-<button class="btn btn-default"><a href='#' onClick="history.back(); return false">戻る</a></button>
- </div>
- </div>
+
+<div class="control-group">
+  残りロール: <strong><%= @stock %></strong> 本
+</div>
+<div class="control-group">
+  1日の消費量： <strong><%= @consume_oneday %>m</strong>
+</div>
+<div class="control-group">
+  なくなる日： <strong><%= @end_day.year%>年<%= @end_day.month %>月<%= @end_day.day %>日</strong>
+</div>
+<div class="control-group">
+  ※ 1日あたりの消費量は　男性3.5m、女性12.5m で計算しています（日本トイレ協会調べ）
+</div>
+<br />
+<%= link_to t('.back', :default => t("helpers.links.back")),
+               top_index_path, :class => 'btn btn-default'  %>
