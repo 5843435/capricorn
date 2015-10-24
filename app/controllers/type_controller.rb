@@ -11,7 +11,7 @@ class TypeController < ApplicationController
         #if current_user.family_men.to_i > 0 && current_user.family_women.to_i > 0 then
             #1日の消費量計算
             consume_oneday = (current_user.family_men.to_i * man_consume_oneday) + (current_user.family_women * woman_consume_oneday)
-    #楽天ブックスAPIによるデータ取得
+    #会員登録時に住所情報がうまく登録できないので一時的にコメントアウト
 =begin
             if !current_user.address.index("沖縄").nil? then
                 consume_oneday = consume_oneday*2
