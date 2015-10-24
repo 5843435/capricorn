@@ -1,32 +1,24 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Stock -%>
+<div class="page-header">
+  <h1><%= @stock.item.name %></h1>
+</div>
 
-<p>
-  <strong>商品名:</strong>
-  <%= @stock.item.name %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong>単位:</strong></dt>
+  <dd><%= @stock.unit %></dd>
+  <dt><strong>個数:</strong></dt>
+  <dd><%= @stock.num %></dd>
+  <dt><strong>1日当たりの消費量:</strong></dt>
+  <dd><%= @stock.item.spent_men + @stock.item.spent_women %></dd>
+  <dt><strong>なくなる日:</strong></dt>
+  <dd><% end_day = @stock.updated_at + (( @stock.num * @stock.unit / ( @stock.item.spent_men + @stock.item.spent_women )).floor * 24 * 3600 ) %>
+  <%= end_day.year %>年<%= end_day.month %>月<%= end_day.day %>日</dd>
+</dl>
 
-<p>
-  <strong>単位:</strong>
-  <%= @stock.unit %>
-</p>
-
-<p>
-  <strong>個数:</strong>
-  <%= @stock.num %>
-</p>
-
-<p>
-  <strong>1日当たりの消費量:</strong>
-  <%= @stock.item.spent_men + @stock.item.spent_women %>
-</p>
-
-<p>
-  <strong>なくなる日:</strong>
-  <% end_day = @stock.updated_at + (( @stock.num * @stock.unit / ( @stock.item.spent_men + @stock.item.spent_women )).floor * 24 * 3600 ) %>
-  <%= end_day.year %>年<%= end_day.month %>月<%= end_day.day %>日
-</p>
-
-
-<%#= link_to '編集', edit_stock_path(@stock) %>
-<%= link_to '一覧に戻る', stocks_path %> | 
-<%= link_to '削除', @stock, method: :delete, data: { confirm: '本当に削除しますか？' } %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              stocks_path, :class => 'btn btn-default'  %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              stock_path(@stock),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => '本当に削除しますか？')) },
+              :class => 'btn btn-danger' %>

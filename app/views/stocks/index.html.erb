@@ -1,29 +1,40 @@
-<p id="notice"><%= notice %></p>
-
-<h1>在庫一覧</h1>
-
-<table class="table table-striped table-bordered table-hover table-condensed">
+<%- model_class = Stock -%>
+<div class="page-header">
+  <h1>在庫一覧</h1>
+</div>
+<% if @stocks.empty? %>
+  <h4>在庫の登録がありません</h4>
+<% else %>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>商品名</th>
       <th>なくなる日</th>
-      <th colspan="3"></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @stocks.each do |stock| %>
        <% end_day = stock.updated_at + (( stock.num * stock.unit / ( stock.item.spent_men + stock.item.spent_women )).floor * 24 * 3600 ) %>
+       <% remain_day = (( end_day - Time.now ) / ( 60 * 60 * 24 )).truncate %>
+       <% if (( end_day - Time.now ) / ( 60 * 60 * 24 )).truncate < 0 %><% next %><% end %>
       <tr>
         <td><%= link_to stock.item.name, stock if stock.item %></td>
         <td><%= end_day.year %>年<%= end_day.month %>月<%= end_day.day %>日
-          （あと<%= (( end_day - Time.now ) / ( 60 * 60 * 24 )).truncate %>日）
+          （あと<%= remain_day %>日）</td>
+        <td>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      stock_path(stock),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => '本当に削除しますか？')) },
+                      :class => 'btn btn-xs btn-danger' %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<% end %>
 
-<br>
-
-<%= link_to '新しい商品の登録', new_stock_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_stock_path,
+            :class => 'btn btn-primary' %>

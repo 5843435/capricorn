@@ -1,5 +1,6 @@
 class StocksController < ApplicationController
   before_action :set_stock, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # 登録画面を選択ボックス方式にするためモデルからデータを取り出す記述
   before_filter :_get_item
@@ -12,7 +13,6 @@ class StocksController < ApplicationController
   # GET /stocks
   # GET /stocks.json
   def index
-    #@stocks = Stock.all
     @stocks = Stock.where(:user_id => current_user.id).order("id desc")
     @user = User.where(:id => current_user.id)
   end
@@ -38,7 +38,7 @@ class StocksController < ApplicationController
     @stock.user_id = current_user.id
     respond_to do |format|
       if @stock.save
-        format.html { redirect_to @stock, notice: 'Stock was successfully created.' }
+        format.html { redirect_to stocks_url, notice: '在庫を登録しました' }
         format.json { render :show, status: :created, location: @stock }
       else
         format.html { render :new }
@@ -66,7 +66,7 @@ class StocksController < ApplicationController
   def destroy
     @stock.destroy
     respond_to do |format|
-      format.html { redirect_to stocks_url, notice: 'Stock was successfully destroyed.' }
+      format.html { redirect_to stocks_url, notice: '在庫を削除しました' }
       format.json { head :no_content }
     end
   end

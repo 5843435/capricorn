@@ -1,0 +1,18 @@
+ja:
+  activerecord:
+    models:
+      stock: '在庫'
+      item: 'アイテム'
+    attributes:
+      stock:
+        id: 'ID'
+        unit: '単位'
+        num: '個数'
+        name: '名前'
+        created_at: '登録日'
+        updated_at: '更新日'
+      item:
+        id: 'ID'
+        user_id: 'ユーザー'
+        created_at: '登録日'
+        updated_at: '更新日'

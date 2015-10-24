@@ -2,54 +2,45 @@
 <html lang="ja">
 <head>
   <title>Capricorn</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
   <script src="http://ajaxzip3.googlecode.com/svn/trunk/ajaxzip3/ajaxzip3.js" charset="UTF-8"></script>
   <%= csrf_meta_tags %>
-        <nav>
-            <% if user_signed_in? %>
-                <strong><%= current_user.email %></strong> さん　ようこそ<br />
-                <%= link_to '登録アイテム一覧', stocks_path %><br />
-                <%= link_to 'プロフィール変更', edit_user_registration_path %>
-                <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-            <% else %>
-                <%= link_to 'サインアップ', new_user_registration_path %>
-                <%= link_to 'ログイン', new_user_session_path %>
-            <% end %>
-        </nav>
+
 </head>
 <body>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-
 
     <!-- Navigation -->
     <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
     <nav id="sidebar-wrapper">
         <ul class="sidebar-nav">
             <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
-            <li class="sidebar-brand">
-                <a href="#top"  onclick = $("#menu-close").click(); >Start Bootstrap</a>
-            </li>
-            <li>
-                <a href="#top" onclick = $("#menu-close").click(); >Home</a>
-            </li>
-            <li>
-                <a href="#about" onclick = $("#menu-close").click(); >About</a>
-            </li>
-            <li>
-                <a href="#services" onclick = $("#menu-close").click(); >Services</a>
-            </li>
-            <li>
-                <a href="#portfolio" onclick = $("#menu-close").click(); >Portfolio</a>
-            </li>
-            <li>
-                <a href="#contact" onclick = $("#menu-close").click(); >Contact</a>
-            </li>
+            <% if user_signed_in? %>
+                <li><%= link_to '登録アイテム一覧', stocks_path %></li>
+                <li><%= link_to 'プロフィール変更', edit_user_registration_path %></li>
+                <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+            <% else %>
+                <li><%= link_to 'サインアップ', new_user_registration_path %></li>
+                <li><%= link_to 'ログイン', new_user_session_path %></li>
+            <% end %>
         </ul>
     </nav>
 
-<%= yield %>
+<div class="container">
+  <div class="row">
+    <% flash.each do |name, msg| %>
+      <div class="alert alert-<li><%= name == "notice" ? "success" : "error" %>">
+        <a class="close" data-dismiss="alert">×</a>
+        <%= msg %>
+      </div>
+    <% end %>
+    <div class="span8">
+      <%= yield %>
+    </div>
+  </div>
+</div>
 
     <!-- Custom Theme JavaScript -->
     <script>
