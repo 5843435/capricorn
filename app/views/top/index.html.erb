@@ -5,7 +5,6 @@
       </div>
     <% end %>
 
-
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center ">
@@ -30,7 +29,7 @@
                 <div class="col-lg-12 text-center">
                     <h3>トイレットペーパーはあと何ロールありますか？</h3>
                       <%= form_tag("/type/index", method: "post") do %>
-                        <input type="number" name="stock" value="12" class="btn btn-dark">
+                        <input type="number" name="stock" value="12" min="1" max="100" class="btn btn-dark">
                         <input type="submit" value="いつ頃無くなるかな" class="btn btn-dark"></form>
                       <% end %>
                 </div>
@@ -55,30 +54,22 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="portfolio-item">
-                                <a href="#">
                                     <img class="img-portfolio img-responsive" src="assets/portfolio-1_fixed.png">
-                                </a>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="portfolio-item">
-                                <a href="#">
                                     <img class="img-portfolio img-responsive" src="assets/portfolio-2_fixed.png">
-                                </a>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="portfolio-item">
-                                <a href="#">
                                     <img class="img-portfolio img-responsive" src="assets/portfolio-3_fixed.png">
-                                </a>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="portfolio-item">
-                                <a href="#">
                                     <img class="img-portfolio img-responsive" src="assets/portfolio-4_fixed.png">
-                                </a>
                             </div>
                         </div>
                     </div>
@@ -161,22 +152,18 @@
     </section>
 
     <!-- About -->
-    <section id="about" class="about">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2>サービス概要</h2>
-                    <p class="lead">このサービスは「日用品の買い忘れ」を解決したい 「一人暮らしの男性向け」の 「買い忘れのリマインドを実現する」プロダクトです。これは、「品物の初期設定だけで 　それがなくなりそうな時にアナウンス」され、 既存の「日用品のリマインダーやお買い物メモ」とは違って、「自動での通知機能と個人への最適化 （ログの蓄積や、商品のリコメンド）」が備わっています。</p>
+                    <p class="lead"><small>このサービスは「日用品の買い忘れ」を解決したい 「一人暮らしの男性向け」の 「買い忘れのリマインドを実現する」プロダクトです。これは、「品物の初期設定だけで 　それがなくなりそうな時にアナウンス」され、 既存の「日用品のリマインダーやお買い物メモ」とは違って、「自動での通知機能と個人への最適化 （ログの蓄積や、商品のリコメンド）」が備わっています。</small></p>
                 </div>
             </div>
             <!-- /.row -->
         </div>
         <!-- /.container -->
-    </section>
-
 
     <!-- Footer -->
-    <footer>
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1 text-center">
@@ -205,4 +192,4 @@
                 </div>
             </div>
         </div>
-    </footer>
+
