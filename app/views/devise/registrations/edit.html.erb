@@ -38,7 +38,7 @@
   <div class="form-group">
     <%= f.label :メール送信タイミング, class: "col-sm-2 control-label" %>
     <div class="col-sm-6 form-inline">
-在庫がなくなる<%= f.select :notification, {"0" => "0", "1" => "1", "3" => "3","7" => "7"}, {}, {:class => 'form-control'} %>日前にメールでお知らせ
+在庫がなくなる日が<%= f.select :notification, {"0" => "0", "1" => "1", "3" => "3",　"5" => "5",　"7" => "7"}, {}, {:class => 'form-control'} %>日を切るとメールでお知らせ
     <br> ※0日に設定した場合、メール通知はされません
     </div>
   </div>
