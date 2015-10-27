@@ -9,6 +9,7 @@
   <thead>
     <tr>
       <th>商品名</th>
+      <th>登録日</th>
       <th>なくなる日</th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -20,6 +21,7 @@
        <% if (( end_day - Time.now ) / ( 60 * 60 * 24 )).truncate < 0 %><% next %><% end %>
       <tr>
         <td><%= link_to stock.item.name, stock if stock.item %></td>
+        <td><%= stock.updated_at.strftime("%Y年%m月%d日") %></td>
         <td><%= end_day.year %>年<%= end_day.month %>月<%= end_day.day %>日
           （あと<%= remain_day %>日）</td>
         <td>

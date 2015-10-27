@@ -10,6 +10,8 @@
   <dd><%= @stock.num %></dd>
   <dt><strong>1日当たりの消費量:</strong></dt>
   <dd><%= @stock.item.spent_men + @stock.item.spent_women %></dd>
+  <dt><strong>登録日:</strong></dt>
+  <dd><%= @stock.updated_at.strftime("%Y年%m月%d日") %></dd>
   <dt><strong>なくなる日:</strong></dt>
   <dd><% end_day = @stock.updated_at + (( @stock.num * @stock.unit / ( @stock.item.spent_men + @stock.item.spent_women )).floor * 24 * 3600 ) %>
   <%= end_day.year %>年<%= end_day.month %>月<%= end_day.day %>日</dd>
