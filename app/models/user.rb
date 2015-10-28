@@ -10,8 +10,8 @@ class User < ActiveRecord::Base
   # itemsテーブルとの紐づけ
   has_many :stocks
 
-  # 郵便番号は数字7桁のみ有効
-  validates :zipcode, length: { is: 7 }, numericality: { only_integer: true }
+  # 郵便番号は数字7桁のみ有効 -> 一時的に無効化
+  # validates :zipcode, length: { is: 7 }, numericality: { only_integer: true }
 
   # 家族構成で男女いずれかは1以上でなければならない
   validates :family_men, numericality: {
