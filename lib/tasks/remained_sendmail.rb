@@ -1,7 +1,6 @@
 require "#{Rails.root}/app/models/user"
 
 class Tasks::RemainedSendmail < ApplicationController
-  include MyModule
   #User = Struct.new("User", :name, :mail)
   MailInfo = Struct.new("MailInfo", :title, :text, :item, :url)
   def self.execute
@@ -14,7 +13,7 @@ class Tasks::RemainedSendmail < ApplicationController
                 item = Item.find_by(:id => j+1)
                 now = Time.zone.today
                 stocks.each {|stock|
-                    end_day = calcEndday(stock)
+                    end_day = stock.updated_at + (( stock.num * stock.unit / ( stock.item.spent_men + stock.item.spent_women )).floor * 24 * 3600 ) 
                     if end_day.to_date < now + 2.day then
                         user = User.find_by(:id => i+1)
                         puts user.email + ":" + item.name + ":send mail"
