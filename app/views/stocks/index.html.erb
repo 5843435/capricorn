@@ -14,13 +14,13 @@
     <% @stocks.each do |stock| %>
     <% end_day = stock.updated_at + (( stock.num * stock.unit / ( stock.item.spent_men + stock.item.spent_women )).floor * 24 * 3600 ) %>
     <% if end_day <= Time.now %>
-    <% elseif end_day < (Time.now + 1.week) %>
+    <% elsif end_day < (Time.now + 1.week) %>
       <% week1[stock.id] = stock.item.name %>
-    <% elseif ((Time.now + 1.week) <= end_day) || (end_day < (Time.now + 2.week)) %>
+    <% elsif ((Time.now + 1.week) <= end_day) && (end_day < (Time.now + 2.week)) %>
       <% week2[stock.id] = stock.item.name %>
-    <% elseif ((Time.now + 2.week) <= end_day) || (end_day < (Time.now + 3.week)) %>
+    <% elsif ((Time.now + 2.week) <= end_day) && (end_day < (Time.now + 3.week)) %>
       <% week3[stock.id] = stock.item.name %>
-    <% elseif ((Time.now + 3.week) <= end_day) || (end_day < (Time.now + 4.week)) %>
+    <% elsif ((Time.now + 3.week) <= end_day) && (end_day < (Time.now + 4.week)) %>
       <% week4[stock.id] = stock.item.name %>
     <% else %>
       <% week5[stock.id] = stock.item.name %>
@@ -29,22 +29,22 @@
     <tbody>
      <tr>
         <td>今週</td>
-        <td><% week1.each do |name| %><%= name %><% end %></td>
+        <td><% week1.each do |name| %><%= name != nil ? name : "" %><% end %></td>
       </tr>
       <tr>
         <td>来週</td>
-        <td><% week2.each do |name| %><%= name %><% end %></td>
+        <td><% week2.each do |name| %><%= name != nil ? name : "" %><% end %></td>
       </tr>
       <tr>
         <td>再来週</td>
-        <td><% week3.each do |name| %><%= name %><% end %></td>
+        <td><% week3.each do |name| %><%= name != nil ? name : "" %><% end %></td>
       </tr>
       <tr>
         <td>4</td>
-        <td><% week4.each do |name| %><%= name %><% end %></td>
+        <td><% week4.each do |name| %><%= name != nil ? name : "" %><% end %></td>
       <tr>
         <td>5...</td>
-        <td><% week5.each do |name| %><%= name %><% end %></td>
+        <td><% week5.each do |name| %><%= name != nil ? name : "" %><% end %></td>
       </tr> 
     </tbody>
 </table>
