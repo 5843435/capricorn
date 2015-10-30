@@ -14,10 +14,13 @@ class Tasks::RemainedSendmail
                 now = Time.zone.today
                 stocks.each {|stock|
                     end_day = stock.updated_at + (( stock.num * stock.unit / ( item.spent_men + item.spent_women )).floor * 24 * 3600 )
-                    if end_day.to_date < now + 2.day then
-                        user = User.find_by(:id => i+1)
-                        puts user.email + ":" + item.name + ":send mail"
-                        RemainedMailer.remained_email(user, item).deliver
+                    user = User.find_by(:id => i+1)
+                    # メール通知設定が 0日 だったらメールおくんないよ！
+                    if user.notification != 0 then
+                      if end_day.to_date <= now + user.notification.day + 1 then
+                          puts user.email + ":" + item.name + ":send mail"
+                          RemainedMailer.remained_email(user, item, user.notification).deliver
+                      end
                     end
                 } 
             end
