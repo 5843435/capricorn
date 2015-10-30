@@ -4,7 +4,6 @@ class StocksController < ApplicationController
 
   # 登録画面を選択ボックス方式にするためモデルからデータを取り出す記述
   before_filter :_get_item
-
   def _get_item
     @items = Item.all
   end
