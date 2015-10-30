@@ -51,7 +51,7 @@ class StocksController < ApplicationController
   def update
     respond_to do |format|
       if @stock.update(stock_params)
-        format.html { redirect_to @stock, notice: 'Stock was successfully updated.' }
+        format.html { redirect_to @stock, notice: '在庫を更新しました' }
         format.json { render :show, status: :ok, location: @stock }
       else
         format.html { render :edit }

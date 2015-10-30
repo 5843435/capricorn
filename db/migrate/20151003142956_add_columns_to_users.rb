@@ -4,5 +4,6 @@ class AddColumnsToUsers < ActiveRecord::Migration
     add_column :users, :family_women, :integer
     add_column :users, :zipcode, :integer, :limit => 7
     add_column :users, :address, :string
+    add_column :users, :notification, :integer
   end
 end
