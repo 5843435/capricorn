@@ -9,7 +9,7 @@
     <% week4 = [] %>
     <% week5 = [] %>
     <% @stocks.each do |stock| %>
-    <% end_day = stock.updated_at + (( stock.num * stock.unit / ( stock.item.spent_men + stock.item.spent_women )).floor * 24 * 3600 ) %>
+    <% end_day =  calcEndday(stock) %> 
     <% if end_day <= Time.now %>
     <% elsif end_day < (Time.now + 1.week) %>
       <% week1[stock.id] = stock.item.name %>
