@@ -1,6 +1,6 @@
 class RemainedMailer < ApplicationMailer
     default from: "info@capricorn.com"
-    def remained_email(user, item)
+    def remained_email(user, item, notification)
         @item_name = item.name
         case item.id
         when 1 then
@@ -15,6 +15,7 @@ class RemainedMailer < ApplicationMailer
             url = 'http://www.amazon.co.jp/s/ref=nb_sb_noss_1?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&url=search-alias%3Daps&field-keywords=%E3%82%B7%E3%83%A3%E3%83%B3%E3%83%97%E3%83%BC&rh=i%3Aaps%2Ck%3A%E3%82%B7%E3%83%A3%E3%83%B3%E3%83%97%E3%83%BC'
         end
         @url = url
+        @notification = notification
         mail to: user.email, subject: 'Capricornからのリマインド'
     end
 end

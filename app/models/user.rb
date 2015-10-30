@@ -22,4 +22,7 @@ class User < ActiveRecord::Base
   # 一貫性を保つため、emailは小文字に変換する
   before_save { self.email = email.downcase }
 
+  # メール通知のタイミングは数字1桁のみ
+  validates :notification, length: { is: 1 }, numericality: { only_integer: true }
+
 end
