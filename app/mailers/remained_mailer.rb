@@ -1,3 +1,5 @@
+# coding: utf-8
+
 class RemainedMailer < ApplicationMailer
     default from: "info@capricorn.com"
     def remained_email(user, item, notification)
