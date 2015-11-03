@@ -6,9 +6,9 @@
   <h1>マイページ</h1>
 </div>
 <% if @stocks.empty? %>
-  <h4>在庫登録がありません。</h4>
+  <h4><img class="img-portfolio" src="/assets/icons/panda0.png">在庫登録がないよ。下のボタンから登録してね。</h4>
 <% else %>
-  <h4>買い足し時期は?</h4>
+  <h4>買い足し時期はいつごろかな？</h4>
 <table class="table table-striped table-bordered table-hover table-condensed">
     <% week1 = {} %>
     <% week2 = {} %>
