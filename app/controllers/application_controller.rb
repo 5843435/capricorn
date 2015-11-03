@@ -7,9 +7,9 @@ class ApplicationController < ActionController::Base
 helper_method :calcEndday
   # devise で各種個人情報を入力できるように修正
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:email, :family_men, :family_women, :zipcode, :address, :notification, :password, :password_confirmation, :current_password) }
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :family_men, :family_women, :zipcode, :address, :notification, :password, :password_confirmation, :current_password) }
-    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :family_men, :family_women, :zipcode, :address, :notification, :password, :password_confirmation, :current_password) }
+    devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:email, :email_second,  :family_men, :family_women, :zipcode, :address, :notification, :password, :password_confirmation, :current_password) }
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :email_second, :family_men, :family_women, :zipcode, :address, :notification, :password, :password_confirmation, :current_password) }
+    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :email_second, :family_men, :family_women, :zipcode, :address, :notification, :password, :password_confirmation, :current_password) }
   end
 
   # devise でログイン後のリダイレクト先を変更

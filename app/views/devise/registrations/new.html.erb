@@ -11,6 +11,13 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :"メールアドレス[任意]", class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.email_field :email_second, class: "form-control", autofocus: true %>
+    </div>
+  </div>
+
+  <div class="form-group">
     <%= f.label :"家族構成[必須]", class: "col-sm-2 control-label" %>
     <div class="col-sm-6 form-inline">
 男：<%= f.select :family_men, {"0" => "0", "1" => "1", "2" => "2", "3" => "3", "4" => "4", "5" => "5", "6" => "6", "7" => "7"}, {:selected => 1}, {:class => 'form-control'} %>
