@@ -8,12 +8,31 @@ class StocksController < ApplicationController
     @items = Item.all
   end
 
-
   # GET /stocks
   # GET /stocks.json
   def index
     @stocks = Stock.where(:user_id => current_user.id).order("id desc")
     @user = User.where(:id => current_user.id)
+    @week1 = {}
+    @week2 = {}
+    @week3 = {}
+    @week4 = {}
+    @week5 = {}
+    @stocks.each do |stock|
+    end_day =  calcEndday(stock) 
+    if end_day <= Time.now
+    elsif end_day < (Time.now + 1.week)
+      @week1.store(stock.item.id, stock.item.name)
+    elsif ((Time.now + 1.week) <= end_day) && (end_day < (Time.now + 2.week))
+      @week2.store(stock.item.id, stock.item.name)
+    elsif ((Time.now + 2.week) <= end_day) && (end_day < (Time.now + 3.week))
+      @week3.store(stock.item.id, stock.item.name)
+    elsif ((Time.now + 3.week) <= end_day) && (end_day < (Time.now + 4.week))
+      @week4.store(stock.item.id, stock.item.name)
+    else
+      @week5.store(stock.item.id, stock.item.name)
+    end
+    end
   end
 
   # GET /stocks/1
