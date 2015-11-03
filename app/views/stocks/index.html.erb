@@ -8,53 +8,61 @@
 <% if @stocks.empty? %>
   <h4>在庫登録がありません。</h4>
 <% else %>
-
   <h4>買い足し時期は?</h4>
 <table class="table table-striped table-bordered table-hover table-condensed">
-    <% week1 = [] %>
-    <% week2 = [] %>
-    <% week3 = [] %>
-    <% week4 = [] %>
-    <% week5 = [] %>
+    <% week1 = {} %>
+    <% week2 = {} %>
+    <% week3 = {} %>
+    <% week4 = {} %>
+    <% week5 = {} %>
     <% @stocks.each do |stock| %>
     <% end_day =  calcEndday(stock) %> 
     <% if end_day <= Time.now %>
     <% elsif end_day < (Time.now + 1.week) %>
-      <% week1[stock.id] = stock.item.name %>
+      <% week1.store(stock.item.id, stock.item.name) %>
     <% elsif ((Time.now + 1.week) <= end_day) && (end_day < (Time.now + 2.week)) %>
-      <% week2[stock.id] = stock.item.name %>
+      <% week2.store(stock.item.id, stock.item.name) %>
     <% elsif ((Time.now + 2.week) <= end_day) && (end_day < (Time.now + 3.week)) %>
-      <% week3[stock.id] = stock.item.name %>
+      <% week3.store(stock.item.id, stock.item.name) %>
     <% elsif ((Time.now + 3.week) <= end_day) && (end_day < (Time.now + 4.week)) %>
-      <% week4[stock.id] = stock.item.name %>
+      <% week4.store(stock.item.id, stock.item.name) %>
     <% else %>
-      <% week5[stock.id] = stock.item.name %>
+      <% week5.store(stock.item.id, stock.item.name) %>
     <% end %>
     <% end %>
     <tbody>
      <tr>
         <td>これから7日以内</td>
-        <td><% week1.each do |name| %><%= name != nil ? name : "" %>  <% end %></td>
+        <td><% week1.each do |key, value| %>
+          <img class="img-portfolio" width="30" height="30" src="/assets/icons/<%= key %>.png">
+          <%= value %><% end %></td>
       </tr>
       <tr>
         <td>これから14日以内</td>
-        <td><% week2.each do |name| %><%= name != nil ? name : "" %>  <% end %></td>
+        <td><% week2.each do |key, value| %>
+          <img class="img-portfolio" width="30" height="30" src="/assets/icons/<%= key %>.png">
+          <%= value %><% end %></td>
       </tr>
       <tr>
         <td>これから21日以内</td>
-        <td><% week3.each do |name| %><%= name != nil ? name : "" %>  <% end %></td>
+        <td><% week3.each do |key, value| %>
+          <img class="img-portfolio" width="30" height="30" src="/assets/icons/<%= key %>.png">
+          <%= value %><% end %></td>
       </tr>
       <tr>
         <td>これから28日以内</td>
-        <td><% week4.each do |name| %><%= name != nil ? name : "" %>  <% end %></td>
+        <td><% week4.each do |key, value| %>
+          <img class="img-portfolio" width="30" height="30" src="/assets/icons/<%= key %>.png">
+          <%= value %><% end %></td>
       </tr>
       <tr>
         <td>これから28日以降</td>
-        <td><% week5.each do |name| %><%= name != nil ? name : "" %>  <% end %></td>
+        <td><% week5.each do |key, value| %>
+          <img class="img-portfolio" width="30" height="30" src="/assets/icons/<%= key %>.png">
+          <%= value %><% end %></td>
       </tr> 
     </tbody>
 </table>
-
 <table class="table table-striped">
   <thead>
     <tr>
@@ -99,7 +107,6 @@
   </tbody>
 </table>
 <% end %>
-
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_stock_path,
             :class => 'btn btn-primary' %>
