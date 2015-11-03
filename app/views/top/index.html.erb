@@ -12,7 +12,7 @@
             <h3>日用品の買忘れはありませんか</h3>
             <br>
             <% if user_signed_in? %>
-              <%= link_to '登録日用品一覧', stocks_path, :class => "btn btn-dark btn-lg" %>
+              <%= link_to 'マイページ', stocks_path, :class => "btn btn-dark btn-lg" %>
               <%= link_to 'プロフィール変更', edit_user_registration_path, :class => "btn btn-dark btn-lg" %>
               <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, :class => "btn btn-dark btn-lg" %>
             <% else %>
