@@ -69,7 +69,7 @@
       <th>商品名</th>
       <th>登録日</th>
       <th>なくなる日</th>
-      <th>残量</th>
+      <th>推定残量</th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -84,14 +84,21 @@
         <td><%= end_day.year %>年<%= end_day.month %>月<%= end_day.day %>日
           （あと<%= remain_day %>日）</td>
         <td>
-      　  <% instance_div = stock.num.div(10) %>
-          <% instance_div.times{ %>
-          <img class="img-portfolio" width="40" height="40" src="/assets/icons/<%= stock.item.id %>_10.png">
-          <% } %>
-          <% instance_modulo = stock.num.modulo(10) %>
-          <% instance_modulo.times { %>
-          <img class="img-portfolio" width="30" height="30" src="/assets/icons/<%= stock.item.id %>.png">
-          <% } %>
+          <% remain_num = stock.num * (end_day - Time.now) / (end_day - stock.updated_at) %>
+          <% if remain_num >= 1 %>
+        　  <% instance_div = remain_num.floor.div(10) %>
+            <% instance_div.times{ %>
+            <img class="img-portfolio" width="40" height="40" src="/assets/icons/<%= stock.item.id %>_10.png">
+            <% } %>
+            <% instance_modulo = remain_num.floor.modulo(10) %>
+            <% instance_modulo.times { %>
+            <img class="img-portfolio" width="30" height="30" src="/assets/icons/<%= stock.item.id %>.png">
+            <% } %>
+            <%= remain_num.floor %>個
+          <% else %>
+            <img class="img-portfolio" width="30" height="30" src="/assets/icons/<%= stock.item.id %>.png">
+            <%= (remain_num * 100).floor %>%
+          <% end %>
 　　　　</td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
