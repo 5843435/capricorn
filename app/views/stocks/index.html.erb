@@ -1,7 +1,15 @@
 <% require 'rubygems' %>
 <% require 'active_support' %>
 
-<h2>買い足し時期は?</h2>
+<%- model_class = Stock -%>
+<div class="page-header">
+  <h1>マイページ</h1>
+</div>
+<% if @stocks.empty? %>
+  <h4>在庫登録がありません。</h4>
+<% else %>
+
+  <h4>買い足し時期は?</h4>
 <table class="table table-striped table-bordered table-hover table-condensed">
     <% week1 = [] %>
     <% week2 = [] %>
@@ -39,6 +47,7 @@
       <tr>
         <td>これから28日以内</td>
         <td><% week4.each do |name| %><%= name != nil ? name : "" %><% end %></td>
+      </tr>
       <tr>
         <td>これから28日以降</td>
         <td><% week5.each do |name| %><%= name != nil ? name : "" %><% end %></td>
@@ -46,13 +55,6 @@
     </tbody>
 </table>
 
-<%- model_class = Stock -%>
-<div class="page-header">
-  <h1>マイページ</h1>
-</div>
-<% if @stocks.empty? %>
-  <h4>商品の登録がありません</h4>
-<% else %>
 <table class="table table-striped">
   <thead>
     <tr>
