@@ -1,7 +1,5 @@
-# coding: utf-8
-
 class RemainedMailer < ApplicationMailer
-    default from: "info@capricorn.com"
+    default from: "info@capricorn.com",charset: "UTF-8"
     def remained_email(user, item, notification)
         @item_name = item.name
         case item.id
