@@ -21,31 +21,35 @@
 <table class="table table-striped table-bordered table-hover table-condensed">
     <tbody>
      <tr>
-        <td>これから7日以内</td>
+       <td>買い足しどき</td>
+       <td>商品</td>
+     </tr>
+     <tr>
+        <td>1週間以内 急いで買わなきゃ！</td>
         <td><% @week1.each do |key, value| %>
           <img width="30" height="30" src="/assets/icons/<%= key %>.png">
           <%= value %><% end %></td>
       </tr>
       <tr>
-        <td>これから14日以内</td>
+        <td>2週間以内 そろそろ買っとく？</td>
         <td><% @week2.each do |key, value| %>
           <img width="30" height="30" src="/assets/icons/<%= key %>.png">
           <%= value %><% end %></td>
       </tr>
       <tr>
-        <td>これから21日以内</td>
+        <td>3週間以内 まぁ大丈夫でしょ</td>
         <td><% @week3.each do |key, value| %>
           <img width="30" height="30" src="/assets/icons/<%= key %>.png">
           <%= value %><% end %></td>
       </tr>
       <tr>
-        <td>これから28日以内</td>
+        <td>4週間以内 まだまだ余裕〜</td>
         <td><% @week4.each do |key, value| %>
           <img width="30" height="30" src="/assets/icons/<%= key %>.png">
           <%= value %><% end %></td>
       </tr>
       <tr>
-        <td>これから28日以降</td>
+        <td>たくさんあるよー</td>
         <td><% @week5.each do |key, value| %>
           <img width="30" height="30" src="/assets/icons/<%= key %>.png">
           <%= value %><% end %></td>

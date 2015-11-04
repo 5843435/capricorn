@@ -13,7 +13,7 @@
   <dt><strong>登録日:</strong></dt>
   <dd><%= @stock.updated_at.strftime("%Y年%m月%d日") %></dd>
   <dt><strong>なくなる日:</strong></dt>
-  <dd><% end_day = @stock.updated_at + (( @stock.num * @stock.unit / ( @stock.item.spent_men + @stock.item.spent_women )).floor * 24 * 3600 ) %>
+  <dd><% end_day = calcEndday(@stock) %>
   <%= end_day.year %>年<%= end_day.month %>月<%= end_day.day %>日</dd>
 </dl>
 
