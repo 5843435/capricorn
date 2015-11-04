@@ -90,13 +90,11 @@
             <% end %>
   　　　　    </td>
         <td>
-          <%= stock.increase_day %>
           <%= link_to t('.increase_day', :default => t("helpers.links.increase_day")),
-                      increase_day_stocks_path(stock),
+                      stock_path(stock),
                       #:href => "/stocks/increace_day/#{stock.id}",
-                      :method => :increase_day,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'な
-くなる日を１日増やしますか？')) },
+                      :method => :put,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'なくなる日を１日増やしますか？')) },
                       :class => 'btn btn-xs btn-success' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       stock_path(stock),

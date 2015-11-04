@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   resources :stocks
-  resources :stocks do
-    collection do
-     put 'increase_day'
-     patch 'increase_day'
-    end
-  end
+  #resources :stocks do
+  #  collection do
+  #   put 'increase_day'
+  #   patch 'increase_day'
+  #  end
+  #end
   resources :items
 
   devise_for :users

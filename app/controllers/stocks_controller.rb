@@ -68,15 +68,20 @@ class StocksController < ApplicationController
   # PATCH/PUT /stocks/1
   # PATCH/PUT /stocks/1.json
   def update
-    respond_to do |format|
-      if @stock.update(stock_params)
-        format.html { redirect_to @stock, notice: '在庫を更新しました' }
-        format.json { render :show, status: :ok, location: @stock }
-      else
-        format.html { render :edit }
-        format.json { render json: @stock.errors, status: :unprocessable_entity }
+    #respond_to do |format|
+    #  if @stock.update(stock_params)
+    #    format.html { redirect_to @stock, notice: '在庫を更新しました' }
+    #    format.json { render :show, status: :ok, location: @stock }
+    #  else
+    #    format.html { render :edit }
+    #    format.json { render json: @stock.errors, status: :unprocessable_entity }
+    #  end
+    #end
+    @stock.increment!(:increase_day, 1)
+      respond_to do |format|
+        format.html { redirect_to stocks_url}
+        format.json { head :no_content }
       end
-    end
   end
 
   # DELETE /stocks/1
