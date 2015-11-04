@@ -1,70 +1,70 @@
 <% require 'rubygems' %>
 <% require 'active_support' %>
-
-<h2>買い足し時期は?</h2>
-<table class="table table-striped table-bordered table-hover table-condensed">
-    <% week1 = [] %>
-    <% week2 = [] %>
-    <% week3 = [] %>
-    <% week4 = [] %>
-    <% week5 = [] %>
-    <% @stocks.each do |stock| %>
-    <% end_day =  calcEndday(stock) %> 
-    <% if end_day <= Time.now %>
-    <% elsif end_day < (Time.now + 1.week) %>
-      <% week1[stock.id] = stock.item.name %>
-    <% elsif ((Time.now + 1.week) <= end_day) && (end_day < (Time.now + 2.week)) %>
-      <% week2[stock.id] = stock.item.name %>
-    <% elsif ((Time.now + 2.week) <= end_day) && (end_day < (Time.now + 3.week)) %>
-      <% week3[stock.id] = stock.item.name %>
-    <% elsif ((Time.now + 3.week) <= end_day) && (end_day < (Time.now + 4.week)) %>
-      <% week4[stock.id] = stock.item.name %>
-    <% else %>
-      <% week5[stock.id] = stock.item.name %>
-    <% end %>
-    <% end %>
-    <tbody>
-     <tr>
-        <td>これから7日以内</td>
-        <td><% week1.each do |name| %><%= name != nil ? name : "" %><% end %></td>
-      </tr>
-      <tr>
-        <td>これから14日以内</td>
-        <td><% week2.each do |name| %><%= name != nil ? name : "" %><% end %></td>
-      </tr>
-      <tr>
-        <td>これから21日以内</td>
-        <td><% week3.each do |name| %><%= name != nil ? name : "" %><% end %></td>
-      </tr>
-      <tr>
-        <td>これから28日以内</td>
-        <td><% week4.each do |name| %><%= name != nil ? name : "" %><% end %></td>
-      <tr>
-        <td>これから28日以降</td>
-        <td><% week5.each do |name| %><%= name != nil ? name : "" %><% end %></td>
-      </tr> 
-    </tbody>
-</table>
-
 <%- model_class = Stock -%>
 <div class="page-header">
   <h1>マイページ</h1>
 </div>
 <% if @stocks.empty? %>
-  <h4>商品の登録がありません</h4>
+  <h4><img height="80" src="/assets/icons/panda0.png">在庫登録がないよ。下のボタンから登録してね。</h4>
 <% else %>
+<% if @week1.present? %>
+  <h4><img height="80" src="/assets/icons/panda1.png">あと１週間以内になくなりそうだよ、買いに行かなきゃ</h4>
+<% elsif @week2.present? %>
+  <h4><img height="80" src="/assets/icons/panda2.png">あと１週間以上は大丈夫だよ。そろそろ買い足しといた方がいいかも</h4>
+<% elsif @week3.present? %>
+  <h4><img height="80" src="/assets/icons/panda3.png">あと２週間以上は大丈夫だよ。買い足し時期はいつごろかな？</h4>
+<% elsif @week4.present? %>
+  <h4><img height="80" src="/assets/icons/panda4.png">あと３週間以上は大丈夫だよ。買い足し時期はいつごろかな？</h4>
+<% else %>
+  <h4><img height="80" src="/assets/icons/panda5.png">あと１か月くらいは大丈夫だよ。買い足し時期はいつごろかな？</h4>
+<% end %>
+<table class="table table-striped table-bordered table-hover table-condensed">
+    <tbody>
+     <tr>
+        <td>これから7日以内</td>
+        <td><% @week1.each do |key, value| %>
+          <img width="30" height="30" src="/assets/icons/<%= key %>.png">
+          <%= value %><% end %></td>
+      </tr>
+      <tr>
+        <td>これから14日以内</td>
+        <td><% @week2.each do |key, value| %>
+          <img width="30" height="30" src="/assets/icons/<%= key %>.png">
+          <%= value %><% end %></td>
+      </tr>
+      <tr>
+        <td>これから21日以内</td>
+        <td><% @week3.each do |key, value| %>
+          <img width="30" height="30" src="/assets/icons/<%= key %>.png">
+          <%= value %><% end %></td>
+      </tr>
+      <tr>
+        <td>これから28日以内</td>
+        <td><% @week4.each do |key, value| %>
+          <img width="30" height="30" src="/assets/icons/<%= key %>.png">
+          <%= value %><% end %></td>
+      </tr>
+      <tr>
+        <td>これから28日以降</td>
+        <td><% @week5.each do |key, value| %>
+          <img width="30" height="30" src="/assets/icons/<%= key %>.png">
+          <%= value %><% end %></td>
+      </tr> 
+    </tbody>
+</table>
 <table class="table table-striped">
   <thead>
     <tr>
       <th>商品名</th>
       <th>登録日</th>
       <th>なくなる日</th>
+      <th>推定残量</th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @stocks.each do |stock| %>
-      <% end_day =  calcEndday(stock) %> 
+      <% end_day = calcEndday(stock) %> 
        <% remain_day = (( end_day - Time.now ) / ( 60 * 60 * 24 )).truncate %>
        <% if (( end_day - Time.now ) / ( 60 * 60 * 24 )).truncate < 0 %><% next %><% end %>
       <tr>
@@ -72,6 +72,23 @@
         <td><%= stock.updated_at.strftime("%Y年%m月%d日") %></td>
         <td><%= end_day.year %>年<%= end_day.month %>月<%= end_day.day %>日
           （あと<%= remain_day %>日）</td>
+            <% remain_num = stock.num * (end_day - Time.now) / (end_day - stock.updated_at) %>
+              <td>
+            <% if remain_num >= 1 %>
+          　  <% instance_div = remain_num.floor.div(10) %>
+              <% instance_div.times { %>
+                <img width="40" height="40" src="/assets/icons/<%= stock.item.id %>_10.png">
+                <% } %>
+                <% instance_modulo = remain_num.floor.modulo(10) %>
+                <% instance_modulo.times { %>
+                <img width="30" height="30" src="/assets/icons/<%= stock.item.id %>.png">
+                <% } %>
+                <%= remain_num.floor %>個
+            <% else %>
+                <img width="30" height="30" src="/assets/icons/<%= stock.item.id %>.png">
+                <%= (remain_num * 100).floor %>%
+            <% end %>
+  　　　　    </td>
         <td>
           <%= stock.increase_day %>
           <%= link_to t('.increase_day', :default => t("helpers.links.increase_day")),
@@ -92,7 +109,6 @@
   </tbody>
 </table>
 <% end %>
-
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_stock_path,
             :class => 'btn btn-primary' %>
