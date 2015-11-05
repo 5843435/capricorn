@@ -1,5 +1,3 @@
-#coding: utf-8
-
 class RemainedMailer < ApplicationMailer
     default from: "info@capricorn.com"
     def remained_email(user, item, notification)
@@ -18,8 +16,8 @@ class RemainedMailer < ApplicationMailer
         end
         @url = url
         @notification = notification
-        mail to: user.email, subject: 'Capricornからのリマインド'
-        mail to: user.email_second, subject: 'Capricornからのリマインド'
+        mail to: user.email, subject: 'Capricorn'
+        #mail to: user.email_second, subject: 'Capricornからのリマインド'
     end
 end
 
