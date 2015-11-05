@@ -16,7 +16,7 @@ class RemainedMailer < ApplicationMailer
         end
         @url = url
         @notification = notification
-        mail to: user.email + ',' +  user.email_second
+        mail to: user.email + ',' +  user.email_second,
         subject: 'Capricornからのリマインド'
     end
 end
