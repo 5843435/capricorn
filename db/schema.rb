@@ -15,9 +15,9 @@ ActiveRecord::Schema.define(version: 20151103030650) do
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
-    t.integer  "spent_men"
-    t.integer  "spent_women"
-    t.integer  "spent_child"
+    t.float    "spent_men"
+    t.float    "spent_women"
+    t.float    "spent_child"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
