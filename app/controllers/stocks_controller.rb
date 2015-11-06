@@ -1,5 +1,5 @@
 class StocksController < ApplicationController
-  before_action :set_stock, only: [:show, :edit, :update, :destroy]
+  before_action :set_stock, only: [:show, :edit, :update, :destroy, :increase_day]
   before_action :authenticate_user!
 
   # 登録画面を選択ボックス方式にするためモデルからデータを取り出す記述
@@ -68,15 +68,20 @@ class StocksController < ApplicationController
   # PATCH/PUT /stocks/1
   # PATCH/PUT /stocks/1.json
   def update
-    respond_to do |format|
-      if @stock.update(stock_params)
-        format.html { redirect_to @stock, notice: '在庫を更新しました' }
-        format.json { render :show, status: :ok, location: @stock }
-      else
-        format.html { render :edit }
-        format.json { render json: @stock.errors, status: :unprocessable_entity }
+    #respond_to do |format|
+    #  if @stock.update(stock_params)
+    #    format.html { redirect_to @stock, notice: '在庫を更新しました' }
+    #    format.json { render :show, status: :ok, location: @stock }
+    #  else
+    #    format.html { render :edit }
+    #    format.json { render json: @stock.errors, status: :unprocessable_entity }
+    #  end
+    #end
+    @stock.increment!(:increase_day, 1)
+      respond_to do |format|
+        format.html { redirect_to stocks_url}
+        format.json { head :no_content }
       end
-    end
   end
 
   # DELETE /stocks/1
@@ -87,6 +92,15 @@ class StocksController < ApplicationController
       format.html { redirect_to stocks_url, notice: '在庫を削除しました' }
       format.json { head :no_content }
     end
+  end
+  # ワンクリックで日付を増やす
+  def increase_day
+    @stock.increase_day
+    #@stock.user_id = current_user.id
+    #respond_to do |format|
+    #  format.html { redirect_to stocks_url, notice: '日付を増やしました' }
+    #  format.json { head :no_content }
+    #end
   end
 
   private

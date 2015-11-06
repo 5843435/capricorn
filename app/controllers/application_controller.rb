@@ -17,7 +17,7 @@ helper_method :calcEndday
     stocks_path
   end
   def calcEndday(stock)
-    end_day = stock.updated_at + (( stock.num * stock.unit / ( stock.item.spent_men + stock.item.spent_women )).floor * 24 * 3600 )
+    end_day = stock.updated_at + stock.increase_day.days + (( stock.num * stock.unit / ( stock.item.spent_men + stock.item.spent_women )).floor * 24 * 3600 )
     return end_day
   end
 end
