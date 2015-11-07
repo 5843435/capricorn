@@ -4,11 +4,11 @@
 
   <% @instance_div = @stock.to_i.div(10) %>
    <% @instance_div.times{ %>
-    <img class="img-portfolio" width="80" height="80" src="/assets/icons/toiletpaper10.png">
+    <img class="img-portfolio" width="80" height="80" src="/assets/icons/1_10.png">
    <% } %>
   <% @instance_modulo = @stock.to_i.modulo(10) %>
    <% @instance_modulo.times { %>
-    <img class="img-portfolio" width="30" height="30" src="/assets/icons/toiletpaper.png">
+    <img class="img-portfolio" width="30" height="30" src="/assets/icons/1.png">
    <% } %>
 
 <div class="control-group">
@@ -21,8 +21,18 @@
   なくなる日： <strong><%= @end_day.year%>年<%= @end_day.month %>月<%= @end_day.day %>日</strong>
 </div>
 <div class="control-group">
-  ※ 1日あたりの消費量は　男性3.5m、女性12.5m で計算しています（日本トイレ協会調べ）
+  ※ 1日あたりの消費量は　3.5m　で計算しています（日本トイレ協会調べ）
 </div>
 <br />
-<%= link_to t('.back', :default => t("helpers.links.back")),
-               top_index_path, :class => 'btn btn-default'  %>
+
+<% if user_signed_in? %>
+  <%= link_to 'マイページ', stocks_path, :class => "btn btn-dark" %>
+  <%= link_to 'プロフィール変更', edit_user_registration_path, :class => "btn btn-dark" %>
+  <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, :class => "btn btn-dark" %>
+<% else %>
+　おうちの在庫を管理したい人は。。。
+  <%= link_to 'サインアップ', new_user_registration_path, :class => "btn btn-dark" %>
+  <br>
+　すでにユーザー登録済みの人は。。。
+  <%= link_to 'ログイン', new_user_session_path, :class => "btn btn-dark" %>
+<% end %>
