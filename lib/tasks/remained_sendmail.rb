@@ -13,7 +13,7 @@ class Tasks::RemainedSendmail
                 item = Item.find_by(:id => j+1)
                 now = Time.zone.today
                 stocks.each {|stock|
-                    end_day = stock.created_at + stock.increase_day.days + (((stock.num * stock.unit) / ( stock.user.family_men*stock.item.spent_men + stock.user.family_women*stock.item.spent_women ))).to_i.days
+                    end_day = stock.created_at + stock.increase_day.days + ((stock.num * stock.unit) / ( stock.user.family_men*stock.item.spent_men + stock.user.family_women*stock.item.spent_women )).to_i.days
                     user = User.find_by(:id => i+1)
                     # メール通知設定が 0日 だったらメールおくんないよ！
                     if user.notification != 0 then
