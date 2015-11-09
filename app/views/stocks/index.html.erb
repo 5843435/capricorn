@@ -62,7 +62,7 @@
       <th>商品名</th>
       <th>登録日</th>
       <th>なくなる日</th>
-      <th>推定残量</th>
+      <th>あとこれくらいあるかも</th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -89,18 +89,23 @@
                 <% } %>
                 <%= remain_num.floor %>個
             <% else %>
+                <% if remain_num < 0 %>
                 <img width="30" height="30" src="/assets/icons/<%= stock.item.id %>.png">
-                <%= (remain_num * 100).floor %>%
+                  0%
+                <% else %>
+                <img width="30" height="30" src="/assets/icons/<%= stock.item.id %>.png">
+                  <%= (remain_num * 100).to_i %>%
+                <% end %>
             <% end %>
   　　　　    </td>
         <td>
-          <%= link_to t('.increase_day', :default => t("helpers.links.increase_day")),
+          <%= link_to t('.increase_day', :default => t("今日は使ってないよ")),
                       stock_path(stock),
                       #:href => "/stocks/increace_day/#{stock.id}",
                       :method => :put,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'なくなる日を１日増やしますか？')) },
                       :class => 'btn btn-xs btn-success' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+          <%= link_to t('.destroy', :default => t("もう無くなったよ")),
                       stock_path(stock),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => '本当に削除しますか？')) },
@@ -110,6 +115,9 @@
     <% end %>
   </tbody>
 </table>
+※商品を削除するときは「もうなくなったよ」ボタンを押してね<br>
+※商品を使用していないときや、なくなる日の調整を行いたいときは「今日は使ってないよ」ボタンを押してね<br>
+<br>
 <% end %>
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_stock_path,
