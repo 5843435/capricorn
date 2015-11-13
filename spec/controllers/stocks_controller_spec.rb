@@ -36,7 +36,7 @@ RSpec.describe StocksController, :type => :controller do
       expect(response).to redirect_to stocks_path(assigns([:stocks]))
     end
     # 日数を増やすことができるか？
-　　#it "change increase_day" do
+    #it "change increase_day" do
     #  stock_params = { num: 1 }
     #  patch :update, id: stock, stock: stock_params
     #  stock.reload
