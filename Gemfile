@@ -53,7 +53,8 @@ group :development, :test do
   gem 'spring'
   
   # test
-  gem 'rspec-rails', '3.0.2'
+  #gem 'rspec-rails', '3.0.2'
+  gem 'rspec-rails', '~> 3.1'
   gem 'shoulda-matchers', '~> 2.6.0'
   gem 'factory_girl_rails', '~> 4.4.1'
   gem 'capybara', '~> 2.2.1'
