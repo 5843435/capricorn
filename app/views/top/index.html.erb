@@ -8,8 +8,8 @@
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center ">
-            <h1>Capricorn</h1>
-            <h3>日用品の買忘れはありませんか</h3>
+            <h1>ずぼらパンダ</h1>
+            <h3>ついつい買い忘れることってありませんか？</h3>
             <br>
             <% if user_signed_in? %>
               <%= link_to 'マイページ', stocks_path, :class => "btn btn-dark btn-lg" %>
@@ -21,68 +21,6 @@
             <% end %>
         </div>
     </header>
-
-    <!-- Call to Action -->
-    <aside class="call-to-action bg-primary">
-        <div class="container success">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-<h3>トイレットペーパーはあと何個ありますか？</h3>
-                      <%= form_tag("/type/index", method: "post") do %>
-                        <input type="number" name="stock" value="12" min="1" max="100" class="btn btn-dark">
-                        <input type="submit" value="いつ頃無くなるかな" class="btn btn-dark"></form>
-                      <% end %>
-                </div>
-            </div>
-        </div>
-    </aside>
-
-
-    <!-- Callout -->
-    <aside class="callout">
-        <div class="text-vertical-center">
-            <h1>こんな経験ありませんか？！</h1>
-        </div>
-    </aside>
-
-    <!-- Portfolio -->
-    <section id="portfolio" class="portfolio">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <hr class="small">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                    <img class="img-portfolio img-responsive" src="assets/portfolio-1_fixed.png">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                    <img class="img-portfolio img-responsive" src="assets/portfolio-2_fixed.png">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                    <img class="img-portfolio img-responsive" src="assets/portfolio-3_fixed.png">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                    <img class="img-portfolio img-responsive" src="assets/portfolio-4_fixed.png">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.row (nested) -->
-                    <h3>トイレで紙がない！<br>そんな経験がある方にぴったりなサービスです！</h3>
-                </div>
-                <!-- /.col-lg-10 -->
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container -->
-    </section>
-
 
     <!-- Services -->
     <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
