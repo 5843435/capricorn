@@ -16,7 +16,12 @@
   <dd><% end_day = calcEndday(@stock) %>
   <%= end_day.year %>年<%= end_day.month %>月<%= end_day.day %>日</dd>
   <dt><strong>写真:</strong></dt>
-  <dd><%= image_tag @stock.photo.url(:medium) %></dd>
+  <dd>
+    <% if @stock.photo.file? %>
+      <%= image_tag @stock.photo.url(:medium) %>
+    <% else %>
+    <% end %>
+  </dd>
   <dt><strong>備考:</strong></dt>
   <dd><%= @stock.remarks %></dd></dl>
 
