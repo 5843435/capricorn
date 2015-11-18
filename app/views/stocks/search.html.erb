@@ -5,8 +5,7 @@
   <h1>これまでの履歴</h1>
 </div>
 
-<%= search_form_for @search, url: search_stocks_path,
-                        html: { method: :post } do |f| %>
+<%= search_form_for @search, url: search_stocks_path, do |f| %>
   <%= f.label :item_name_cont, 'num' %>
   <%= f.text_field :item_name_cont %>
   <div>
