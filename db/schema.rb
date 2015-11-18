@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151118131841) do
+ActiveRecord::Schema.define(version: 20151118135242) do
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
@@ -29,15 +29,6 @@ ActiveRecord::Schema.define(version: 20151118131841) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "semiusers", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.string   "key",        null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "semiusers", ["key"], name: "index_semiusers_on_key", unique: true
-
   create_table "stocks", force: :cascade do |t|
     t.string   "user_id"
     t.integer  "item_id"
@@ -51,6 +42,7 @@ ActiveRecord::Schema.define(version: 20151118131841) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.string   "remarks"
   end
 
   create_table "users", force: :cascade do |t|
