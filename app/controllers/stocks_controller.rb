@@ -36,8 +36,8 @@ class StocksController < ApplicationController
   end
 
   def search
-    @stocks = Stock.where(:user_id => current_user.id).order("id desc")
-    @user = User.where(:id => current_user.id)
+    @search = Stock.search(params[:q])
+    @stocks = @search.result(distinct: true)
   end
 
   # GET /stocks/1

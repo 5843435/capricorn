@@ -3,6 +3,10 @@ source 'https://rubygems.org'
 # 画像アップロード用
 gem 'paperclip'
 
+# 検索用
+gem 'ransack'
+gem 'rails-i18n'
+
 #gem 'rakuten_web_service'
 ruby '2.2.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

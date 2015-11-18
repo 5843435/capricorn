@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :stocks do
     collection do
-      get 'search'
+      match 'search' => 'stocks#search', via: [:get, :post], as: :search
     end
   end
 

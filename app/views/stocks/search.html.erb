@@ -4,9 +4,16 @@
 <div class="page-header">
   <h1>これまでの履歴</h1>
 </div>
-<% if @stocks.empty? %>
-  <h4><img height="80" src="/assets/icons/panda0.png">在庫登録がないよ。下のボタンから登録してね。</h4>
-<% else %>
+
+<%= search_form_for @search, url: search_stocks_path,
+                        html: { method: :post } do |f| %>
+  <%= f.label :item_name_cont, 'num' %>
+  <%= f.text_field :item_name_cont %>
+  <div>
+    <%= f.submit '検索する' %>
+  </div>
+<% end %>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -40,6 +47,5 @@
     <% end %>
   </tbody>
 </table>
-<% end %>
 <%= link_to t('.back', :default => t("helpers.links.back")),
               stocks_path, :class => 'btn btn-default'  %>
