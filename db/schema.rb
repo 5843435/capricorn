@@ -15,9 +15,9 @@ ActiveRecord::Schema.define(version: 20151118135242) do
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
-    t.integer  "spent_men"
-    t.integer  "spent_women"
-    t.integer  "spent_child"
+    t.float    "spent_men"
+    t.float    "spent_women"
+    t.float    "spent_child"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -28,15 +28,6 @@ ActiveRecord::Schema.define(version: 20151118135242) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  create_table "semiusers", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.string   "key",        null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "semiusers", ["key"], name: "index_semiusers_on_key", unique: true
 
   create_table "stocks", force: :cascade do |t|
     t.string   "user_id"
