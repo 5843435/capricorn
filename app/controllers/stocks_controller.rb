@@ -35,6 +35,11 @@ class StocksController < ApplicationController
     end
   end
 
+  def search
+    @stocks = Stock.where(:user_id => current_user.id).order("id desc")
+    @user = User.where(:id => current_user.id)
+  end
+
   # GET /stocks/1
   # GET /stocks/1.json
   def show

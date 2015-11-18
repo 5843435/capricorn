@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :stocks
+  resources :stocks do
+    collection do
+      get 'search'
+    end
+  end
+
   #resources :stocks do
   #  collection do
   #   put 'increase_day'
@@ -8,8 +13,7 @@ Rails.application.routes.draw do
   #end
   resources :items
 
-  devise_for :users, controllers: { registrations: 'users/registrations', passwords: 'users/passwords' }
-
+  devise_for :users
   get 'top/index'
 
   post 'type/index' => 'type#index'
