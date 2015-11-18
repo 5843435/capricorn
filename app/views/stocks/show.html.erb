@@ -15,6 +15,8 @@
   <dt><strong>なくなる日:</strong></dt>
   <dd><% end_day = calcEndday(@stock) %>
   <%= end_day.year %>年<%= end_day.month %>月<%= end_day.day %>日</dd>
+  <dt><strong>写真:</strong></dt>
+  <dd><%= image_tag @stock.photo.url(:medium) %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),

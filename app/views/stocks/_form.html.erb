@@ -36,6 +36,13 @@
       <%= f.number_field :num, :class => 'form-control', :min => 1, :value => 12 %>
     </div>
   </div>
+  <div class="control-group">
+    <%= f.label :写真, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.file_field :photo, :class => 'form-control' %>
+    </div>
+  </div>
+
   <br />
 
   <%= f.submit nil, :class => 'btn btn-primary' %>

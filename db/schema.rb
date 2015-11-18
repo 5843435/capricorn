@@ -11,25 +11,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151103061117) do
+ActiveRecord::Schema.define(version: 20151118131841) do
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
-    t.float    "spent_men"
-    t.float    "spent_women"
-    t.float    "spent_child"
+    t.integer  "spent_men"
+    t.integer  "spent_women"
+    t.integer  "spent_child"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
+  create_table "projects", force: :cascade do |t|
+    t.string   "name"
+    t.string   "key"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "semiusers", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.string   "key",        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "semiusers", ["key"], name: "index_semiusers_on_key", unique: true
+
   create_table "stocks", force: :cascade do |t|
-    t.integer  "user_id"
+    t.string   "user_id"
     t.integer  "item_id"
     t.integer  "unit"
     t.integer  "num"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.integer  "increase_day", default: 0
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "increase_day",       default: 0
+    t.string   "project_id"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "users", force: :cascade do |t|
@@ -55,6 +76,8 @@ ActiveRecord::Schema.define(version: 20151103061117) do
     t.string   "address"
     t.integer  "notification"
     t.string   "email_second"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
