@@ -4,14 +4,37 @@
 <div class="page-header">
   <h1>これまでの履歴</h1>
 </div>
-
-<%= search_form_for @search, url: search_stocks_path do |f| %>
-  <%= f.label :item_name_cont, 'num' %>
-  <%= f.text_field :item_name_cont %>
-  <div>
-    <%= f.submit '検索する' %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title">絞り込み検索</div>
   </div>
-<% end %>
+<div class="panel-body">
+  <%= search_form_for @search, url: search_stocks_path do |f| %>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <%= f.text_field :item_name_cont, class: "form-control", placeholder: "商品名" %>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <%= f.text_field :remarks_cont, class: "form-control", placeholder: "備考" %>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <div class="form-inline">
+          <%= f.label :登録日 %>
+          <%= f.date_select :created_at_gt, {include_blank: true, use_month_numbers: true, date_separator: ' / '}, class: "form-control" %>〜
+          <%= f.date_select :created_at_lt, {include_blank: true, use_month_numbers: true, date_separator: ' / '}, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+    <br>
+    <%= f.submit '検索', class: "btn btn-primary" %>
+    <%= link_to 'クリア', url_for, class: "btn btn-default" %>
+  <% end %>
+</div>
+</div>
 
 <table class="table table-striped">
   <thead>
