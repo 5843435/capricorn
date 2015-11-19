@@ -12,8 +12,13 @@ body {
     height: 100%;
 }
 
+@font-face {
+    font-family: "uzura";
+    src: url(../assets/fonts/uzura.ttf);
+}
+
 body {
-    font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: "uzura";
 }
 
 .text-vertical-center {
@@ -155,7 +160,7 @@ hr.small {
     position: relative;
     width: 100%;
     height: 100%;
-    background: url(../assets/bg.jpg) no-repeat center center scroll;
+    /* background: url(../assets/bg.jpg) no-repeat center center scroll; */
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
