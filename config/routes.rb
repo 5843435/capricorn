@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   #end
   resources :items
 
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations', passwords: 'users/passwords' }
+
   get 'top/index'
 
   post 'type/index' => 'type#index'

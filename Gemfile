@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# 画像アップロード用
+gem 'paperclip'
+
 #gem 'rakuten_web_service'
 ruby '2.2.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

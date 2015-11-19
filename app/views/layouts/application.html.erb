@@ -18,7 +18,7 @@
         <ul class="sidebar-nav">
             <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
             <% if user_signed_in? %>
-                <li><%= link_to '登録アイテム一覧', stocks_path %></li>
+                <li><%= link_to 'マイページ', stocks_path %></li>
                 <li><%= link_to 'プロフィール変更', edit_user_registration_path %></li>
                 <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
             <% else %>
