@@ -1,0 +1,16 @@
+class Project < ActiveRecord::Base
+  validates :name, presence: true
+  validates :key, uniqueness: true
+  before_validation :set_key
+  has_many :stocks
+
+  def to_param
+    key
+  end
+
+  private
+
+  def set_key
+    self.key = SecureRandom.base64
+  end
+end

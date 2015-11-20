@@ -2,7 +2,13 @@
 <% require 'active_support' %>
 <%- model_class = Stock -%>
 <div class="page-header">
-  <h3>マイページ</h3>
+  <h3>
+  <% if user_signed_in? %>
+    マイページ
+  <% else %>
+    <%= @project.name %> さんのページ
+  <% end %>
+  </h3>
 </div>
 <% if @stocks.empty? %>
   <h5><img height="80" src="/assets/icons/panda0.png">在庫登録がないよ。下のボタンから登録してね。</h5>
@@ -68,7 +74,13 @@
   </thead>
   <tbody>
     <% @stocks.each do |stock| %>
+
+<% if user_signed_in? %>
       <% end_day = calcEndday(stock) %> 
+<% else %>
+      <% end_day = stock.created_at + stock.increase_day.days + ((stock.num * stock.unit) / ( stock.item.spent_men + stock.item.spent_women )).to_i.days %>
+<% end %>
+
        <% remain_day = (( end_day - Time.now ) / ( 60 * 60 * 24 )).truncate %>
        <% if (( end_day - Time.now ) / ( 60 * 60 * 24 )).truncate < 0 %><% next %><% end %>
       <tr>
@@ -119,8 +131,14 @@
 ※商品を使用していないときや、なくなる日の調整を行いたいときは「今日は使ってないよ」ボタンを押してね<br>
 <br>
 <% end %>
-<%= link_to t('.new', :default => t("helpers.links.new")),
+<% if user_signed_in? %>
+　<%= link_to t('.new', :default => t("helpers.links.new")),
             new_stock_path,
             :class => 'btn btn-primary' %>
 
+<% else %>
+  <%= link_to t('.new', :default => t("helpers.links.new")),
+            new_project_stock_path,
+            :class => 'btn btn-primary' %>
+<% end %>
 <%= link_to '過去の履歴を見る', search_stocks_path, :class => 'btn btn-info' %>

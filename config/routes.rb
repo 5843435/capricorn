@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :projects, param: :key, :shallow => true do
+    resources :stocks
+  end
+
   resources :stocks do
     collection do
       match 'search' => 'stocks#search', via: [:get, :post], as: :search

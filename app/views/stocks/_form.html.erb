@@ -1,4 +1,9 @@
-<%= form_for @stock, :html => { :class => "form-horizontal stock" } do |f| %>
+
+  <% if user_signed_in? %>
+    <%= form_for @stock, :html => { :class => "form-horizontal stock" } do |f| %>
+  <% else %>
+    <%= form_for shallow_args(@project, @stock) do |f| %>
+  <% end %>
 
   <% if @stock.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
@@ -15,7 +20,11 @@
     </div>
   <% end %>
 
-  <% user_id = current_user.id %>
+  <% if user_signed_in? %>
+    <% user_id = current_user.id %>
+  <% else %>
+    <% user_id = params[:project_key] %>
+  <% end %>
 
   <div class="control-group">
     <%= f.label :商品名, :class => 'control-label' %>
@@ -50,8 +59,13 @@
   </div>
   <br />
 
-  <%= f.submit nil, :class => 'btn btn-primary' %>
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-            stocks_path, :class => 'btn btn-default' %>
-
+ <% if user_signed_in? %>
+   <%= f.submit nil, :class => 'btn btn-primary' %>
+   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+             stocks_path, :class => 'btn btn-default' %>
+ <% else %>
+   <%= f.submit nil, :class => 'btn btn-primary' %>
+   <%#= link_to t('.cancel', :default => t("helpers.links.cancel")),
+             project_stocks_path(@project.key), :class => 'btn btn-default' %>
+ <% end %>
 <% end %>
