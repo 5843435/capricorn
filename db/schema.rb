@@ -38,8 +38,15 @@ ActiveRecord::Schema.define(version: 20151118135242) do
   end
 
   create_table "user_items", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "unit"
+    t.integer  "num"
+    t.string   "name"
+    t.float    "spent_men"
+    t.float    "spent_women"
+    t.float    "spent_child"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,10 +1,11 @@
 class UserItemsController < ApplicationController
   before_action :set_user_item, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /user_items
   # GET /user_items.json
   def index
-    @user_items = UserItem.all
+    @user_items = Stock.where(:user_id => current_user.id).order("id desc")
+    @user = User.where(:id => current_user.id)
   end
 
   # GET /user_items/1
@@ -25,10 +26,10 @@ class UserItemsController < ApplicationController
   # POST /user_items.json
   def create
     @user_item = UserItem.new(user_item_params)
-
+    @user_item.user_id = current_user.id
     respond_to do |format|
       if @user_item.save
-        format.html { redirect_to @user_item, notice: 'User item was successfully created.' }
+        format.html { redirect_to @user_item, notice: '在庫を登録しました' }
         format.json { render :show, status: :created, location: @user_item }
       else
         format.html { render :new }
@@ -56,7 +57,7 @@ class UserItemsController < ApplicationController
   def destroy
     @user_item.destroy
     respond_to do |format|
-      format.html { redirect_to user_items_url, notice: 'User item was successfully destroyed.' }
+      format.html { redirect_to user_items_url }
       format.json { head :no_content }
     end
   end
@@ -69,6 +70,6 @@ class UserItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_item_params
-      params.require(:stock).permit(:user_id, :item_id, :unit, :num)
+      params.require(:user_item).permit(:user_id, :name, :unit, :num, :spent_men)
     end
 end

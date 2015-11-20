@@ -10,8 +10,36 @@
       </ul>
     </div>
   <% end %>
+  <% user_id = current_user.id %>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="control-group">
+    <%= f.label :商品名, :class => 'control-label' %>
+    <div class="controls">
+    <%= f.text_field :name, class: 'form-control' %>
+    </div>
   </div>
+  <div class="control-group">
+    <%= f.label :単位, :class => 'control-label' %>
+    <div class="controls">
+    <%= f.number_field :unit, :value=> 1, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :個数, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :num, :class => 'form-control', :value => 1 %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :"1日の使用量", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :spent_men, :class => 'form-control', :default => 1 %>
+    </div>
+  </div>
+  <br />
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            stocks_path, :class => 'btn btn-default' %>
+
 <% end %>
