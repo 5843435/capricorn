@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :user_items
   resources :stocks
   #resources :stocks do
   #  collection do

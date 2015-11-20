@@ -22,27 +22,24 @@ ActiveRecord::Schema.define(version: 20151118135242) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "projects", force: :cascade do |t|
-    t.string   "name"
-    t.string   "key"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "stocks", force: :cascade do |t|
-    t.string   "user_id"
+    t.integer  "user_id"
     t.integer  "item_id"
     t.integer  "unit"
     t.integer  "num"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.integer  "increase_day",       default: 0
-    t.string   "project_id"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.string   "remarks"
+  end
+
+  create_table "user_items", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -68,8 +65,6 @@ ActiveRecord::Schema.define(version: 20151118135242) do
     t.string   "address"
     t.integer  "notification"
     t.string   "email_second"
-    t.string   "provider"
-    t.string   "uid"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
