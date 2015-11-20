@@ -61,12 +61,10 @@ class StocksController < ApplicationController
   # GET /stocks/new
   def new
     @stock = Stock.new
-
-  if user_signed_in? then
-  else
+   if user_signed_in? then
+   else
     @project = Project.find_by(:key => params[:project_key])
-  end
-
+   end
   end
 
   # GET /stocks/1/edit
@@ -136,6 +134,7 @@ class StocksController < ApplicationController
       format.json { head :no_content }
     end
   end
+
   # ワンクリックで日付を増やす
   def increase_day
     @stock.increase_day

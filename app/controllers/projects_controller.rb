@@ -28,7 +28,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to project_stocks_path(@project), notice: 'ページが作成されました。このページをお気に入りに登録しておいてください。' }
+        format.html { redirect_to project_stocks_path(@project), notice: 'ページが作成されました。このページをお気に入りに登録しておいてください。Ctrl+D でお気に入り登録されます。' }
         format.json { render :show, status: :created, location: @project }
       else
         format.html { render :new }

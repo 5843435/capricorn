@@ -135,10 +135,9 @@
 　<%= link_to t('.new', :default => t("helpers.links.new")),
             new_stock_path,
             :class => 'btn btn-primary' %>
-
+<%= link_to '過去の履歴を見る', search_stocks_path, :class => 'btn btn-info' %>
 <% else %>
   <%= link_to t('.new', :default => t("helpers.links.new")),
             new_project_stock_path,
             :class => 'btn btn-primary' %>
 <% end %>
-<%= link_to '過去の履歴を見る', search_stocks_path, :class => 'btn btn-info' %>
