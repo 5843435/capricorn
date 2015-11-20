@@ -128,11 +128,19 @@ class StocksController < ApplicationController
   # DELETE /stocks/1
   # DELETE /stocks/1.json
   def destroy
+   if user_signed_in? then
     @stock.destroy
     respond_to do |format|
       format.html { redirect_to stocks_url}
       format.json { head :no_content }
     end
+   else
+    @stock.destroy
+    respond_to do |format|
+      format.html { redirect_to project_stocks_url}
+      format.json { head :no_content }
+    end
+   end
   end
 
   # ワンクリックで日付を増やす
