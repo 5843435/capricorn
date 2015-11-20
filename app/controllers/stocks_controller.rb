@@ -1,6 +1,6 @@
 class StocksController < ApplicationController
   before_action :set_stock, only: [:show, :edit, :update, :destroy, :increase_day]
-  before_action :authenticate_user!
+  #before_action :authenticate_user!
 
   # 登録画面を選択ボックス方式にするためモデルからデータを取り出す記述
   before_filter :_get_item

@@ -28,7 +28,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
+        format.html { redirect_to project_stocks_path(@project), notice: 'ページが作成されました。このページをお気に入りに登録しておいてください。' }
         format.json { render :show, status: :created, location: @project }
       else
         format.html { render :new }

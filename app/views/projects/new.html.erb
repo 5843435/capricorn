@@ -1,0 +1,9 @@
+<h3>新しいページの作成</h3>
+
+<%= render 'form' %>
+
+ユーザ登録せずに利用した場合
+<ul>メール通知機能が使えません。</ul>
+<ul>家族構成が男1人、女1人に固定されます。</ul>
+
+<%= link_to 'ユーザー登録', new_user_registration_path, :class => "btn btn-dark btn-lg" %>

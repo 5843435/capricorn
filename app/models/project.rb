@@ -11,6 +11,6 @@ class Project < ActiveRecord::Base
   private
 
   def set_key
-    self.key = SecureRandom.base64
+    self.key = SecureRandom.hex
   end
 end
