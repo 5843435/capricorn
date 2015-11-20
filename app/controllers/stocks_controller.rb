@@ -13,8 +13,8 @@ class StocksController < ApplicationController
   def index
   # ログインしていなくても利用可能なように実装
   if user_signed_in? then
-    @stocks = Stock.where(:user_id => current_user.id).order("id desc")
     @user = User.where(:id => current_user.id)
+    @stocks = Stock.where(:user_id => current_user.id).order("id desc")
   else
     @project = Project.find_by(:key => params[:project_key])
     @stocks = Stock.where(:project_id => @project.id).order("id desc")
