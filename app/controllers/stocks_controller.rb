@@ -52,6 +52,11 @@ class StocksController < ApplicationController
     end
   end
 
+  def search
+    @search = Stock.search(params[:q])
+    @stocks = @search.result(distinct: true)
+  end
+
   # GET /stocks/1
   # GET /stocks/1.json
   def show

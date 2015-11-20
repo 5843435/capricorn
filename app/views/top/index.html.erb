@@ -8,8 +8,9 @@
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center ">
-            <h1>Capricorn</h1>
-            <h3>日用品の買忘れはありませんか</h3>
+            <h1>ずぼらパンダ</h1>
+            <h3>ついつい買い忘れることってありません？</h3>
+            <img class="img-portfolio" width="55" height="55" src="/assets/icons/panda7.jpg">
             <br>
             <% if user_signed_in? %>
               <%= link_to 'マイページ', stocks_path, :class => "btn btn-dark btn-lg" %>
@@ -22,124 +23,38 @@
         </div>
     </header>
 
-    <!-- Call to Action -->
-    <aside class="call-to-action bg-primary">
-        <div class="container success">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-<h3>トイレットペーパーはあと何個ありますか？</h3>
-                      <%= form_tag("/type/index", method: "post") do %>
-                        <input type="number" name="stock" value="12" min="1" max="100" class="btn btn-dark">
-                        <input type="submit" value="いつ頃無くなるかな" class="btn btn-dark"></form>
-                      <% end %>
-                </div>
-            </div>
-        </div>
-    </aside>
-
-
-    <!-- Callout -->
-    <aside class="callout">
-        <div class="text-vertical-center">
-            <h1>こんな経験ありませんか？！</h1>
-        </div>
-    </aside>
-
-    <!-- Portfolio -->
-    <section id="portfolio" class="portfolio">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <hr class="small">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                    <img class="img-portfolio img-responsive" src="assets/portfolio-1_fixed.png">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                    <img class="img-portfolio img-responsive" src="assets/portfolio-2_fixed.png">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                    <img class="img-portfolio img-responsive" src="assets/portfolio-3_fixed.png">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                    <img class="img-portfolio img-responsive" src="assets/portfolio-4_fixed.png">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.row (nested) -->
-                    <h3>トイレで紙がない！<br>そんな経験がある方にぴったりなサービスです！</h3>
-                </div>
-                <!-- /.col-lg-10 -->
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container -->
-    </section>
-
-
     <!-- Services -->
     <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
     <section id="services" class="services bg-primary">
         <div class="container">
             <div class="row text-center">
                 <div class="col-lg-10 col-lg-offset-1">
-                    <h2>主要な機能</h2>
+                    <h2>こんなことができるよ</h2>
                     <hr class="small">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-6">
+	            <div class="row">
+                        <div>
                             <div class="service-item">
                                 <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-pencil-square-o fa-stack-1x text-primary"></i>
                             </span>
                                 <h4>
-                                    <strong>買い忘れ防止</strong>
+                                    <strong>買い忘れないよ</strong>
                                 </h4>
-                                <p>買い置きが切れる日が分かり、<br>買い置きが切れる前に<br>お知らせしてくれます</p>
+                                <p>いつ頃に買い置きが切れそうか、<br>事前に教えてくれるよ</p>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-6">
+                        <div>
                             <div class="service-item">
                                 <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-users fa-stack-1x text-primary"></i>
                             </span>
                                 <h4>
-                                    <strong>消費量予測</strong>
+                                    <strong>自動で計算するんだ</strong>
                                 </h4>
-                                <p>性別と家族構成に応じた<br>日本人の平均的な利用量を基に、<br>消費量を予測して自動計算します</p>
+                                <p>性別と家族構成、<br>日本人の平均的な利用量を基に、<br>自動で消費量を計算するよ<br>パンダ基準じゃないよ</p>
                             </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-line-chart fa-stack-1x text-primary"></i>
-                            </span>
-                                <h4>
-                                    <strong>履歴把握<br>（機能追加予定）</strong>
-                                </h4>
-                                <p>買い置き量だけでなく、<br>過去の消費量や補充の履歴<br>グラフィカルに確認できます</p>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-comments fa-stack-1x text-primary"></i>
-                            </span>
-                                <h4>
-                                    <strong>リコメンド<br>（機能追加予定）</strong>
-                                </h4>
-                                <p>過去の利用状況や家族構成に<br>応じたお勧め商品を通知します</p>
-                           </div>
                         </div>
                     </div>
                     <!-- /.row (nested) -->
@@ -152,42 +67,11 @@
     </section>
 
     <!-- About -->
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>サービス概要</h2>
-                    <p class="lead"><small>「日用品の買い忘れのリマインド」や「買い置きが切れる時期」を通知するサービスです。<br>「最初に日用品を設定するだけ」で、なくなる前に通知されます。 「日用品のリマインダーやお買い物メモ」とは異なり、<br>「自動での通知機能とユーザーへの最適化 （履歴の蓄積や、おすすめ商品のリコメンド機能）」が備わっています。</small></p>
-                </div>
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container -->
 
     <!-- Footer -->
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <h4><strong>Capricorn</strong>
-                    </h4>
-                    <p>1-10-40 Higashi-Ooi<br>Shinagawa-Ku Tokyo 140-0011</p>
-                    <ul class="list-unstyled">
-                        <gli><i class="fa fa-phone fa-fw"></i> (03)3472-7831</li>
-                        <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:name@example.com">name@example.com</a>
-                        </li>
-                    </ul>
-                    <br>
-                    <ul class="list-inline">
-                        <li>
-                            <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
-                        </li>
-                    </ul>
-                    <hr class="small">
                     <p class="text-muted">Copyright &copy; Capricorn 2015</p>
                 </div>
             </div>

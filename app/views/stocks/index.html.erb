@@ -2,21 +2,21 @@
 <% require 'active_support' %>
 <%- model_class = Stock -%>
 <div class="page-header">
-  <h1>マイページ</h1>
+  <h3>マイページ</h3>
 </div>
 <% if @stocks.empty? %>
-  <h4><img height="80" src="/assets/icons/panda0.png">在庫登録がないよ。下のボタンから登録してね。</h4>
+  <h5><img height="80" src="/assets/icons/panda0.png">在庫登録がないよ。下のボタンから登録してね。</h5>
 <% else %>
 <% if @week1.present? %>
-  <h4><img height="80" src="/assets/icons/panda1.png">あと１週間以内になくなりそうだよ、買いに行かなきゃ</h4>
+  <h5><img height="80" src="/assets/icons/panda1.png">あと１週間以内になくなりそうだよ、買いに行かなきゃ</h5>
 <% elsif @week2.present? %>
-  <h4><img height="80" src="/assets/icons/panda2.png">あと１週間以上は大丈夫だよ。そろそろ買い足しといた方がいいかも</h4>
+  <h5><img height="80" src="/assets/icons/panda2.png">あと１週間以上は大丈夫だよ。そろそろ買い足しといた方がいいかも</h5>
 <% elsif @week3.present? %>
-  <h4><img height="80" src="/assets/icons/panda3.png">あと２週間以上は大丈夫だよ。買い足し時期はいつごろかな？</h4>
+  <h5><img height="80" src="/assets/icons/panda3.png">あと２週間以上は大丈夫だよ。買い足し時期はいつごろかな？</h5>
 <% elsif @week4.present? %>
-  <h4><img height="80" src="/assets/icons/panda4.png">あと３週間以上は大丈夫だよ。買い足し時期はいつごろかな？</h4>
+  <h5><img height="80" src="/assets/icons/panda4.png">あと３週間以上は大丈夫だよ。買い足し時期はいつごろかな？</h5>
 <% else %>
-  <h4><img height="80" src="/assets/icons/panda5.png">あと１か月くらいは大丈夫だよ。買い足し時期はいつごろかな？</h4>
+  <h5><img height="80" src="/assets/icons/panda5.png">あと１か月くらいは大丈夫だよ。買い足し時期はいつごろかな？</h5>
 <% end %>
 <table class="table table-striped table-bordered table-hover table-condensed">
     <tbody>
@@ -168,3 +168,4 @@
 <%= link_to t('.new', :default => t("オリジナル商品追加")),
             new_user_item_path,
             :class => 'btn btn-primary' %>
+<%= link_to '過去の履歴を見る', search_stocks_path, :class => 'btn btn-info' %>
