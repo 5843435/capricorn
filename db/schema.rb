@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151118135242) do
+ActiveRecord::Schema.define(version: 20151121092326) do
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
@@ -29,10 +29,8 @@ ActiveRecord::Schema.define(version: 20151118135242) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "projects", ["key"], name: "index_projects_on_key", unique: true
-
   create_table "stocks", force: :cascade do |t|
-    t.integer  "user_id"
+    t.string   "user_id"
     t.integer  "item_id"
     t.integer  "unit"
     t.integer  "num"
@@ -45,6 +43,7 @@ ActiveRecord::Schema.define(version: 20151118135242) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.string   "remarks"
+    t.datetime "deleted_at"
   end
 
   create_table "users", force: :cascade do |t|
@@ -70,6 +69,8 @@ ActiveRecord::Schema.define(version: 20151118135242) do
     t.string   "address"
     t.integer  "notification"
     t.string   "email_second"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
