@@ -1,5 +1,6 @@
 class Stock < ActiveRecord::Base
   belongs_to :user
+  belongs_to :project
   belongs_to :item
 
   # 商品名は入力必須

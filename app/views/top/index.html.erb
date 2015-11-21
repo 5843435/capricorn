@@ -18,7 +18,8 @@
               <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, :class => "btn btn-dark btn-lg" %>
             <% else %>
               <%= link_to 'サインアップ', new_user_registration_path, :class => "btn btn-dark btn-lg" %>
-              <%= link_to 'ログイン', new_user_session_path, :class => "btn btn-dark btn-lg" %>
+              <%= link_to 'ログイン', new_user_session_path, :class => "btn btn-dark btn-lg" %><br><br>
+              <%= link_to 'ユーザ登録せずに利用', new_project_path, :class => "btn btn-dark btn-lg" %>
             <% end %>
         </div>
     </header>
