@@ -15,9 +15,9 @@ ActiveRecord::Schema.define(version: 20151121092326) do
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
-    t.integer  "spent_men"
-    t.integer  "spent_women"
-    t.integer  "spent_child"
+    t.float    "spent_men"
+    t.float    "spent_women"
+    t.float    "spent_child"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 20151121092326) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "projects", ["key"], name: "index_projects_on_key", unique: true
 
   create_table "stocks", force: :cascade do |t|
     t.string   "user_id"
@@ -69,8 +71,6 @@ ActiveRecord::Schema.define(version: 20151121092326) do
     t.string   "address"
     t.integer  "notification"
     t.string   "email_second"
-    t.string   "provider"
-    t.string   "uid"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
