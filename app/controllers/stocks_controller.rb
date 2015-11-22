@@ -49,7 +49,8 @@ class StocksController < ApplicationController
   end
 
   def search
-    @search = Stock.search(params[:q])
+    @tempstock = Stock.where(:user_id => current_user.id)
+    @search = @tempstock.search(params[:q])
     @stocks = @search.result(distinct: true)
   end
 
