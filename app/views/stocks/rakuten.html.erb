@@ -1,0 +1,8 @@
+<div class="page-header">
+  <h3>JANコード：<%= @jan %> の検索結果</h3>
+</div>
+
+<% @items.first(1).each do |item| %>
+ <%= item.name %><br>
+ <img src="<%= item['mediumImageUrls'][0]['imageUrl'] %>">
+<% end %>
