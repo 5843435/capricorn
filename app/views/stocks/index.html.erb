@@ -130,6 +130,11 @@
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => '本当に削除しますか？')) },
                       :class => 'btn btn-xs btn-danger' %>
+          <%= link_to t('.charge_max', :default => t("満タンにするよ")),
+                      stock_path(stock),
+                      :method => :put,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => '満タンにしますか？')) },
+                      :class => 'btn btn-xs btn-success' %>
 <% else %>
 ゲストモードでは使えません
 <% end %>
