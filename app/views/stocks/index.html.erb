@@ -138,9 +138,12 @@
     <% end %>
   </tbody>
 </table>
+<% if user_signed_in? %>
 ※商品を削除するときは「もうなくなったよ」ボタンを押してね<br>
 ※商品を使用していないときや、なくなる日の調整を行いたいときは「今日は使ってないよ」ボタンを押してね<br>
 <br>
+<% else %>
+<% end %>
 <% end %>
 <% if user_signed_in? %>
 　<%= link_to t('.new', :default => t("helpers.links.new")),
