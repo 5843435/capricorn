@@ -2,4 +2,11 @@
 <div class="page-header">
   <h3><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h3>
 </div>
-<%= render :partial => 'form' %>
+
+<% if user_signed_in? %>
+  <%= render :partial => 'form' %>
+<% else %>
+  <%= render :partial => 'form2' %>
+<% end %>
+
+

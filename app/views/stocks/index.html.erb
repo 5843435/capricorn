@@ -2,7 +2,13 @@
 <% require 'active_support' %>
 <%- model_class = Stock -%>
 <div class="page-header">
-  <h3>マイページ</h3>
+  <h3>
+  <% if user_signed_in? %>
+    マイページ
+  <% else %>
+    <%= @project.name %> さんのページ
+  <% end %>
+  </h3>
 </div>
 <% if @stocks.empty? %>
   <h5><img height="80" src="/assets/icons/panda0.png">在庫登録がないよ。下のボタンから登録してね。</h5>
@@ -78,11 +84,23 @@
   </thead>
   <tbody>
     <% @stocks.each do |stock| %>
+
+<% if user_signed_in? %>
       <% end_day = calcEndday(stock) %> 
+<% else %>
+      <% end_day = stock.created_at + stock.increase_day.days + ((stock.num * stock.unit) / ( stock.item.spent_men + stock.item.spent_women )).to_i.days %>
+<% end %>
+
        <% remain_day = (( end_day - Time.now ) / ( 60 * 60 * 24 )).truncate %>
        <% if (( end_day - Time.now ) / ( 60 * 60 * 24 )).truncate < 0 %><% next %><% end %>
       <tr>
-        <td><%= link_to stock.item.name, stock if stock.item %></td>
+        <td>
+<% if user_signed_in? %>
+  <%= link_to stock.item.name, stock if stock.item %>
+<% else %>
+  <%= stock.item.name %>
+<% end %>
+        </td>
         <td><%= stock.updated_at.strftime("%Y年%m月%d日") %></td>
         <td><%= end_day.year %>年<%= end_day.month %>月<%= end_day.day %>日
           （あと<%= remain_day %>日）</td>
@@ -109,6 +127,8 @@
             <% end %>
   　　　　    </td>
         <td>
+
+<% if user_signed_in? %>
           <%= link_to t('.increase_day', :default => t("今日は使ってないよ")),
                       stock_path(stock),
                       #:href => "/stocks/increace_day/#{stock.id}",
@@ -120,6 +140,9 @@
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => '本当に削除しますか？')) },
                       :class => 'btn btn-xs btn-danger' %>
+<% else %>
+ゲストモードでは使えません
+<% end %>
         </td>
       </tr>
     <% end %>
@@ -158,14 +181,23 @@
     <% end %>
   </tbody>
 </table>
+<% if user_signed_in? %>
 ※商品を削除するときは「もうなくなったよ」ボタンを押してね<br>
 ※商品を使用していないときや、なくなる日の調整を行いたいときは「今日は使ってないよ」ボタンを押してね<br>
 <br>
+<% else %>
 <% end %>
-<%= link_to t('.new', :default => t("helpers.links.new")),
+<% end %>
+<% if user_signed_in? %>
+　<%= link_to t('.new', :default => t("helpers.links.new")),
             new_stock_path,
             :class => 'btn btn-primary' %>
 <%= link_to t('.new', :default => t("オリジナル商品追加")),
             new_user_item_path,
             :class => 'btn btn-primary' %>
 <%= link_to '過去の履歴を見る', search_stocks_path, :class => 'btn btn-info' %>
+<% else %>
+  <%= link_to t('.new', :default => t("helpers.links.new")),
+            new_project_stock_path,
+            :class => 'btn btn-primary' %>
+<% end %>

@@ -1,0 +1,14 @@
+<%= form_for(@project) do |f| %>
+  <% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h5>名前を入力してから「登録する」をクリックしてください</h5>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :名前を入力してください（ページのトップに表示されるだけです。後で変更はできません） %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit :class => 'btn btn-primary'  %>
+  </div>
+<% end %>
