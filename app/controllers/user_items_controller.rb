@@ -29,7 +29,8 @@ class UserItemsController < ApplicationController
     @user_item.user_id = current_user.id
     respond_to do |format|
       if @user_item.save
-        format.html { redirect_to @user_item, notice: '在庫を登録しました' }
+        #format.html { redirect_to @user_item, notice: '在庫を登録しました' }
+        format.html { redirect_to stocks_url, notice: '在庫を登録しました' }
         format.json { render :show, status: :created, location: @user_item }
       else
         format.html { render :new }

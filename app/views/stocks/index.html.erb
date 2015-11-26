@@ -192,9 +192,6 @@
 　<%= link_to t('.new', :default => t("helpers.links.new")),
             new_stock_path,
             :class => 'btn btn-primary' %>
-<%= link_to t('.new', :default => t("オリジナル商品追加")),
-            new_user_item_path,
-            :class => 'btn btn-primary' %>
 <%= link_to '過去の履歴を見る', search_stocks_path, :class => 'btn btn-info' %>
 <% else %>
   <%= link_to t('.new', :default => t("helpers.links.new")),

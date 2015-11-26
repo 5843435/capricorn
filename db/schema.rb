@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 20151122094551) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "projects", force: :cascade do |t|
+    t.string   "name"
+    t.string   "key"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "projects", ["key"], name: "index_projects_on_key", unique: true
+
   create_table "stocks", force: :cascade do |t|
     t.string   "user_id"
     t.integer  "item_id"
@@ -35,6 +44,7 @@ ActiveRecord::Schema.define(version: 20151122094551) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.string   "remarks"
+    t.string   "project_id"
     t.datetime "deleted_at"
   end
 
