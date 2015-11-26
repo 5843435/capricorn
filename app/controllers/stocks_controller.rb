@@ -155,9 +155,9 @@ class StocksController < ApplicationController
   end
 
   # マックスチャージ
-  def cherge_charge
-    copy = @stock.clone
-    copy.save
+  def cherge_max
+    @stock = Stock.find(params[:id])
+    @stock.dup.save
   end
 
   private
