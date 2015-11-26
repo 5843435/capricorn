@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   resources :items
 
   # JANコード商品検索用
-  get 'stocks/rakuten/:jan' => 'stocks#rakuten'
+  get '/rakuten/search'
 
   devise_for :users, controllers: { registrations: 'users/registrations', passwords: 'users/passwords' }
   get 'top/index'
