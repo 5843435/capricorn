@@ -15,21 +15,12 @@ ActiveRecord::Schema.define(version: 20151118135242) do
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
-    t.integer  "spent_men"
-    t.integer  "spent_women"
-    t.integer  "spent_child"
+    t.float    "spent_men"
+    t.float    "spent_women"
+    t.float    "spent_child"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
-
-  create_table "projects", force: :cascade do |t|
-    t.string   "name"
-    t.string   "key"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "projects", ["key"], name: "index_projects_on_key", unique: true
 
   create_table "stocks", force: :cascade do |t|
     t.integer  "user_id"
