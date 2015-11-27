@@ -2,7 +2,9 @@
 <div class="page-header">
   <h3><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h3>
 </div>
-
+<%= link_to t('.new', :default => t("オリジナル商品追加")),
+            new_user_item_path,
+            :class => 'btn btn-primary' %>
 <% if user_signed_in? %>
   <%= render :partial => 'form' %>
 <% else %>

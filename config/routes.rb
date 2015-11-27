@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
- resources :stocks do
+  resources :user_items
+  resources :stocks
+
+  resources :stocks do
     collection do
       match 'search' => 'stocks#search', via: [:get, :post], as: :search
     end
@@ -25,7 +28,7 @@ Rails.application.routes.draw do
   # JANコード商品検索用
   get '/rakuten/search'
 
-  devise_for :users, controllers: { registrations: 'users/registrations', passwords: 'users/passwords' }
+  devise_for :users, controllers: { registrations: 'users/registrations' }
   get 'top/index'
 
   post 'type/index' => 'type#index'

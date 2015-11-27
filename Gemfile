@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'seed_dump'
+
 # 画像アップロード用
 gem 'paperclip'
 
