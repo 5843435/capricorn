@@ -18,6 +18,24 @@
     <%= f.text_field :name, class: 'form-control' %>
     </div>
   </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <%= f.label :JANコードを入力してボタンを押すと商品名を自動で入力できます %>
+      </div>
+      <div class="col-sm-8">
+        <!---- 結果MSG書き込み用のdiv ---->
+        <div id="result"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <%= f.text_field :id %>
+      </div>
+      <div class="col-sm-8">
+        <div class="btn btn-default" id="rakuten-button"><i class="fa fa-map-marker"></i> JANコードからデータ取得</div>
+      </div>
+    </div>
+
   <div class="control-group">
     <%= f.label :単位, :class => 'control-label' %>
     <div class="controls">

@@ -34,7 +34,9 @@ class TypeController < ApplicationController
       c.application_id = ENV["APPID"]
       c.affiliate_id = ENV["AFID"]
     end
-    @books = RakutenWebService::Books::Book.search(:title => @type)
+    @books = RakutenWebService::Books::Book.search(
+      :keyword => @type,
+      :NGKeyword=> %E9%80%81%E6%96%99%20%E7%89%B9%E4%BE%A1%20%E4%BB%A3%E5%BC%95%E3%81%8D%20%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88%20%E3%81%82%E3%81%99%E6%A5%BD%20%E5%90%8C%E6%A2%B1%20%E5%8F%96%E3%82%8A%E5%AF%84%E3%81%9B%20%E5%8C%85%E8%A3%85%20%E8%B2%A9%E5%A3%B2%20%E3%81%AA%E3%82%93%E3%81%A8)
     #binding.pry
 =end
   end

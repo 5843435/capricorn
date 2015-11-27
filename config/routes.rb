@@ -25,6 +25,9 @@ Rails.application.routes.draw do
 
   resources :items
 
+  # JANコード商品検索用
+  get '/rakuten/search'
+
   devise_for :users, controllers: { registrations: 'users/registrations' }
   get 'top/index'
 
