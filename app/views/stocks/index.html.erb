@@ -10,7 +10,7 @@
   <% end %>
   </h3>
 </div>
-<% if @stocks.empty? %>
+<% if @stocks.empty? && @user_items.empty? %>
   <h5><img height="80" src="/assets/icons/panda0.png">在庫登録がないよ。下のボタンから登録してね。</h5>
 <% else %>
 <% if @week1.present? %>
