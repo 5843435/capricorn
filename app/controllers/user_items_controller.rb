@@ -58,7 +58,7 @@ class UserItemsController < ApplicationController
   def destroy
     @user_item.destroy
     respond_to do |format|
-      format.html { redirect_to user_items_url }
+      format.html { redirect_to stocks_url }
       format.json { head :no_content }
     end
   end
