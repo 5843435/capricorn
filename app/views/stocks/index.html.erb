@@ -10,7 +10,7 @@
   <% end %>
   </h3>
 </div>
-<% if @stocks.empty? %>
+<% if @stocks.empty? && @user_items.empty? %>
   <h5><img height="80" src="/assets/icons/panda0.png">在庫登録がないよ。下のボタンから登録してね。</h5>
 <% else %>
 <% if @week1.present? %>
@@ -33,31 +33,41 @@
      <tr>
         <td>1週間以内 急いで買わなきゃ！</td>
         <td><% @week1.each do |key, value| %>
+          <% if key != '' %>
           <img width="30" height="30" src="/assets/icons/<%= key %>.png">
+          <% end %>
           <%= value %><% end %></td>
       </tr>
       <tr>
         <td>2週間以内 そろそろ買っとく？</td>
         <td><% @week2.each do |key, value| %>
+          <% if key != '' %>
           <img width="30" height="30" src="/assets/icons/<%= key %>.png">
+          <% end %>
           <%= value %><% end %></td>
       </tr>
       <tr>
         <td>3週間以内 まぁ大丈夫でしょ</td>
         <td><% @week3.each do |key, value| %>
+          <% if key != '' %>
           <img width="30" height="30" src="/assets/icons/<%= key %>.png">
+          <% end %>
           <%= value %><% end %></td>
       </tr>
       <tr>
         <td>4週間以内 まだまだ余裕〜</td>
         <td><% @week4.each do |key, value| %>
+          <% if key != '' %>
           <img width="30" height="30" src="/assets/icons/<%= key %>.png">
+          <% end %>
           <%= value %><% end %></td>
       </tr>
       <tr>
         <td>たくさんあるよー</td>
         <td><% @week5.each do |key, value| %>
+          <% if key != '' %>
           <img width="30" height="30" src="/assets/icons/<%= key %>.png">
+          <% end %>
           <%= value %><% end %></td>
       </tr> 
     </tbody>
@@ -136,6 +146,39 @@
         </td>
       </tr>
     <% end %>
+    <% @user_items.each do |user_item| %>
+      <% end_day = calcEnddayEx(user_item) %> 
+       <% remain_day = (( end_day - Time.now ) / ( 60 * 60 * 24 )).truncate %>
+       <% if (( end_day - Time.now ) / ( 60 * 60 * 24 )).truncate < 0 %><% next %><% end %>
+      <tr>
+        <td><%= link_to user_item.name, user_item if user_item.id %></td>
+        <td><%= user_item.updated_at.strftime("%Y年%m月%d日") %></td>
+        <td><%= end_day.year %>年<%= end_day.month %>月<%= end_day.day %>日
+          （あと<%= remain_day %>日）</td>
+            <% remain_num = user_item.num * (end_day - Time.now) / (end_day - user_item.updated_at) %>
+              <td>
+            <% if remain_num >= 1 %>
+                <img width="30" height="30" src="">
+                <%= remain_num.floor %>個
+            <% else %>
+                <% if remain_num < 0 %>
+                <img width="30" height="30" src="">
+                  0%
+                <% else %>
+                <img width="30" height="30" src="">
+                  <%= (remain_num * 100).to_i %>%
+                <% end %>
+            <% end %>
+  　　　　    </td>
+        <td>
+          <%= link_to t('.destroy', :default => t("もう無くなったよ")),
+                      stock_path(user_item),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => '本当に削除しますか？')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 <% if user_signed_in? %>
@@ -149,7 +192,7 @@
 　<%= link_to t('.new', :default => t("helpers.links.new")),
             new_stock_path,
             :class => 'btn btn-primary' %>
-  <%= link_to '過去の履歴を見る', search_stocks_path, :class => 'btn btn-info' %>
+<%= link_to '過去の履歴を見る', search_stocks_path, :class => 'btn btn-info' %>
 <% else %>
   <%= link_to t('.new', :default => t("helpers.links.new")),
             new_project_stock_path,

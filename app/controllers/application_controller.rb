@@ -4,7 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
-helper_method :calcEndday
+  helper_method :calcEndday
+  helper_method :calcEnddayEx
   # devise ‚ÅŠeŽíŒÂlî•ñ‚ð“ü—Í‚Å‚«‚é‚æ‚¤‚ÉC³
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:email, :email_second,  :family_men, :family_women, :zipcode, :address, :notification, :password, :password_confirmation, :current_password) }
@@ -18,6 +19,10 @@ helper_method :calcEndday
   end
   def calcEndday(stock)
     end_day = stock.created_at + stock.increase_day.days + ((stock.num * stock.unit) / ( stock.user.family_men*stock.item.spent_men + stock.user.family_women*stock.item.spent_women )).to_i.days
+    return end_day
+  end
+  def calcEnddayEx(user_item)
+    end_day = user_item.created_at + ((user_item.num * user_item.unit) / ( user_item.user.family_men*user_item.spent_men)).to_i.days
     return end_day
   end
 end

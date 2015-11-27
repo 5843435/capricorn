@@ -11,43 +11,72 @@ class StocksController < ApplicationController
   # GET /stocks
   # GET /stocks.json
   def index
-  # ログインしていなくても利用可能なように実装
-  if user_signed_in? then
-    @user = User.where(:id => current_user.id)
-    @stocks = Stock.where(:user_id => current_user.id).order("id desc")
-  else
-    @project = Project.find_by(:key => params[:project_key])
-    @stocks = Stock.where(:project_id => @project.id).order("id desc")
-  end
+    # ログインしていなくても利用可能なように実装
+    if user_signed_in? then
+      @user = User.where(:id => current_user.id)
+      @user_items = UserItem.where(:user_id => current_user.id).order("id desc")
+      @stocks = Stock.where(:user_id => current_user.id).order("id desc")
+    else
+      @project = Project.find_by(:key => params[:project_key])
+      @stocks = Stock.where(:project_id => @project.id).order("id desc")
+    end
     @week1 = {}
     @week2 = {}
     @week3 = {}
     @week4 = {}
     @week5 = {}
     @stocks.each do |stock|
+      end_day =  calcEndday(stock) 
+      if end_day <= Time.now
+      elsif end_day < (Time.now + 1.week)
+        @week1.store(stock.item.id, stock.item.name)
+      elsif ((Time.now + 1.week) <= end_day) && (end_day < (Time.now + 2.week))
+        @week2.store(stock.item.id, stock.item.name)
+      elsif ((Time.now + 2.week) <= end_day) && (end_day < (Time.now + 3.week))
+        @week3.store(stock.item.id, stock.item.name)
+      elsif ((Time.now + 3.week) <= end_day) && (end_day < (Time.now + 4.week))
+        @week4.store(stock.item.id, stock.item.name)
+      else
+        @week5.store(stock.item.id, stock.item.name)
+      end
 
-  # ログインしていないとcalcEnddayが使えないので下記記述
-  if user_signed_in? then
-    end_day =  calcEndday(stock) 
-  else
-    end_day = stock.created_at + stock.increase_day.days + ((stock.num * stock.unit) / ( stock.item.spent_men + stock.item.spent_women )).to_i.days
-  end
+      # ログインしていないとcalcEnddayが使えないので下記記述
+      if user_signed_in? then
+        end_day =  calcEndday(stock) 
+      else
+        end_day = stock.created_at + stock.increase_day.days + ((stock.num * stock.unit) / ( stock.item.spent_men + stock.item.spent_women )).to_i.days
+      end
 
-    if end_day <= Time.now
-    elsif end_day < (Time.now + 1.week)
-      @week1.store(stock.item.id, stock.item.name)
-    elsif ((Time.now + 1.week) <= end_day) && (end_day < (Time.now + 2.week))
-      @week2.store(stock.item.id, stock.item.name)
-    elsif ((Time.now + 2.week) <= end_day) && (end_day < (Time.now + 3.week))
-      @week3.store(stock.item.id, stock.item.name)
-    elsif ((Time.now + 3.week) <= end_day) && (end_day < (Time.now + 4.week))
-      @week4.store(stock.item.id, stock.item.name)
-    else
-      @week5.store(stock.item.id, stock.item.name)
+      if end_day <= Time.now
+      elsif end_day < (Time.now + 1.week)
+        @week1.store(stock.item.id, stock.item.name)
+      elsif ((Time.now + 1.week) <= end_day) && (end_day < (Time.now + 2.week))
+        @week2.store(stock.item.id, stock.item.name)
+      elsif ((Time.now + 2.week) <= end_day) && (end_day < (Time.now + 3.week))
+        @week3.store(stock.item.id, stock.item.name)
+      elsif ((Time.now + 3.week) <= end_day) && (end_day < (Time.now + 4.week))
+        @week4.store(stock.item.id, stock.item.name)
+      else
+        @week5.store(stock.item.id, stock.item.name)
+      end
+      #オリジナルアイテム
+      @user_items.each do |user_item|
+        end_day =  calcEnddayEx(user_item)
+        if end_day <= Time.now
+        elsif end_day < (Time.now + 1.week)
+          @week1.store('', user_item.name)
+        elsif ((Time.now + 1.week) <= end_day) && (end_day < (Time.now + 2.week))
+          @week2.store('', user_item.name)
+        elsif ((Time.now + 2.week) <= end_day) && (end_day < (Time.now + 3.week))
+          @week3.store('', user_item.name)
+        elsif ((Time.now + 3.week) <= end_day) && (end_day < (Time.now + 4.week))
+          @week4.store('', user_item.name)
+        else
+          @week5.store('', user_item.name)
+        end
+      end
     end
-    end
   end
-
   def search
     @tempstock = Stock.with_deleted.where(:user_id => current_user.id)
     @search = @tempstock.search(params[:q])
@@ -76,35 +105,34 @@ class StocksController < ApplicationController
   # POST /stocks.json
   def create
 
-  # ログインしているときの動き
- if user_signed_in? then
-    @stock = Stock.new(stock_params)
-    @stock.user_id = current_user.id
-    respond_to do |format|
-      if @stock.save
-        format.html { redirect_to stocks_url, notice: '在庫を登録しました' }
-        format.json { render :show, status: :created, location: @stock }
-      else
-        format.html { render :new }
-        format.json { render json: @stock.errors, status: :unprocessable_entity }
+    # ログインしているときの動き
+    if user_signed_in? then
+      @stock = Stock.new(stock_params)
+      @stock.user_id = current_user.id
+      respond_to do |format|
+        if @stock.save
+          format.html { redirect_to stocks_url, notice: '在庫を登録しました' }
+          format.json { render :show, status: :created, location: @stock }
+        else
+          format.html { render :new }
+          format.json { render json: @stock.errors, status: :unprocessable_entity }
+        end
+      end
+    # 非ログイン時の動き
+    else
+      @project = Project.find_by(:key => params[:project_key])
+      @stock = @project.stocks.build(stock_params)
+      @stock.user_id = params[:project_key]
+      respond_to do |format|
+        if @stock.save
+          format.html { redirect_to project_stocks_url, notice: '在庫を登録しました' }
+          format.json { render :show, status: :created, location: @stock }
+        else
+          format.html { render :new }
+          format.json { render json: @stock.errors, status: :unprocessable_entity }
+        end
       end
     end
-  # 非ログイン時の動き
-  else
-    @project = Project.find_by(:key => params[:project_key])
-    @stock = @project.stocks.build(stock_params)
-    @stock.user_id = params[:project_key]
-    respond_to do |format|
-      if @stock.save
-        format.html { redirect_to project_stocks_url, notice: '在庫を登録しました' }
-        format.json { render :show, status: :created, location: @stock }
-      else
-        format.html { render :new }
-        format.json { render json: @stock.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   end
 
   # PATCH/PUT /stocks/1
@@ -164,4 +192,4 @@ class StocksController < ApplicationController
     def stock_params
       params.require(:stock).permit(:user_id, :item_id, :unit, :num, :photo, :remarks)
     end
-end
+  end
