@@ -19,6 +19,7 @@ class StocksController < ApplicationController
     else
       @project = Project.find_by(:key => params[:project_key])
       @stocks = Stock.where(:project_id => @project.id).order("id desc")
+      @user_items = ''
     end
     @week1 = {}
     @week2 = {}
