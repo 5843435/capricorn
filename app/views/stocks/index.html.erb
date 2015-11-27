@@ -172,7 +172,7 @@
   　　　　    </td>
         <td>
           <%= link_to t('.destroy', :default => t("もう無くなったよ")),
-                      stock_path(user_item),
+                      user_item_path(user_item),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => '本当に削除しますか？')) },
                       :class => 'btn btn-xs btn-danger' %>
