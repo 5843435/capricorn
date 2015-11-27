@@ -1,5 +1,5 @@
 class StocksController < ApplicationController
-  before_action :set_stock, only: [:show, :edit, :update, :destroy, :increase_day]
+  before_action :set_stock, only: [:show, :edit, :update, :destroy, :increase_day, :charge_max]
   #before_action :authenticate_user!
 
   # 登録画面を選択ボックス方式にするためモデルからデータを取り出す記述
@@ -156,8 +156,10 @@ class StocksController < ApplicationController
 
   # マックスチャージ
   def cherge_max
-    @stock = Stock.find(params[:id])
-    @stock.dup.save
+    dup_stock =@stock.dup
+    #
+    #
+    dup_stock.save
   end
 
   private

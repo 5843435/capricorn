@@ -132,7 +132,7 @@
                       :class => 'btn btn-xs btn-danger' %>
           <%= link_to t('.charge_max', :default => t("満タンにするよ")),
                       stock_path(stock),
-                      :method => :put,
+                      :method => :post,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => '満タンにしますか？')) },
                       :class => 'btn btn-xs btn-success' %>
 <% else %>
