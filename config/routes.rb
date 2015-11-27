@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   resources :items
 
-  devise_for :users, controllers: { registrations: 'users/registrations', passwords: 'users/passwords' }
+  devise_for :users, controllers: { registrations: 'users/registrations' }
   get 'top/index'
 
   post 'type/index' => 'type#index'
