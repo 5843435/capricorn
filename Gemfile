@@ -10,7 +10,9 @@ gem 'rails-i18n'
 # 論理削除gem
 gem 'kakurenbo'
 
-#gem 'rakuten_web_service'
+# 楽天商品検索用gem
+gem 'rakuten_web_service'
+
 ruby '2.2.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'

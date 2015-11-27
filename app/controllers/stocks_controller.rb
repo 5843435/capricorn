@@ -68,6 +68,18 @@ class StocksController < ApplicationController
    end
   end
 
+  # 楽天APIで商品検索
+  def rakuten
+    # @jan = params[:jan]
+    RakutenWebService.configuration do |c|
+      c.application_id = ENV["APPID"]
+      c.affiliate_id = ENV["AFID"]
+    end
+    result = RakutenWebService::Ichiba::Item.search(:keyword => params[:jan])
+    render json: result
+  end
+
+
   # GET /stocks/1/edit
   def edit
   end

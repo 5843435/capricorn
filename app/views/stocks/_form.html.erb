@@ -41,13 +41,32 @@
       <%= f.file_field :photo, :class => 'form-control' %>
     </div>
   </div>
+
   <div class="control-group">
     <%= f.label :備考, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_area :remarks, :class => 'form-control' %>
+      <%= f.text_field :remarks, :class => 'form-control' %>
     </div>
   </div>
-  <br />
+
+    <div class="row">
+      <div class="col-sm-4">
+        <%= f.label :JANコード %>
+      </div>
+      <div class="col-sm-8">
+        <!---- 結果MSG書き込み用のdiv ---->
+        <div id="result"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <%= f.text_field :id %>
+      </div>
+      <div class="col-sm-8">
+        <div class="btn btn-default" id="rakuten-button"><i class="fa fa-map-marker"></i> JANコードからデータ取得</div>
+      </div>
+    </div>
+
 
    <%= f.submit nil, :class => 'btn btn-primary' %>
    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
