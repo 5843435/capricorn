@@ -17,6 +17,10 @@ body {
     src: url(../assets/fonts/uzura.ttf);
 }
 
+input[type=password]{
+    font-family: "";
+}
+
 body {
     font-family: "uzura";
 }
