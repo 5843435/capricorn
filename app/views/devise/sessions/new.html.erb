@@ -28,8 +28,10 @@ $(function(){
   $("label[for='user_ログインしたままにする']").on('click', function() {
     if($("#user_remember_me:checked").prop('checked')){
       $("#user_remember_me").prop("checked",false);
+      $('input[name="user[remember_me]"]').val(1);
     } else {
       $("#user_remember_me").prop("checked",true);
+      $('input[name="user[remember_me]"]').val(0);
     }
   });
 });
