@@ -39,7 +39,7 @@
   <div class="control-group">
     <%= f.label :単位, :class => 'control-label' %>
     <div class="controls">
-    <%= f.number_field :unit, :value=> 100, class: 'form-control' %>
+    <%= f.number_field :unit,  :class => 'form-control', :value => 100 %>
     </div>
   </div>
   <div class="control-group">
@@ -51,7 +51,7 @@
   <div class="control-group">
     <%= f.label :"1日の使用量", :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :spent_men, :class => 'form-control', :default => 1 %>
+      <%= f.number_field :spent_men, :class => 'form-control', :value => 1 %>
     </div>
   </div>
   <br />
