@@ -159,14 +159,14 @@
             <% remain_num = user_item.num * (end_day - Time.now) / (end_day - user_item.updated_at) %>
               <td>
             <% if remain_num >= 1 %>
-                <img width="30" height="30" src="">
+                <img width="30" height="30" src="/assets/icons/panda7.png">
                 <%= remain_num.floor %>個
             <% else %>
                 <% if remain_num < 0 %>
-                <img width="30" height="30" src="">
+                <img width="30" height="30" src="/assets/icons/panda7.png">
                   0%
                 <% else %>
-                <img width="30" height="30" src="">
+                <img width="30" height="30" src="/assets/icons/panda7.png">
                   <%= (remain_num * 100).to_i %>%
                 <% end %>
             <% end %>
