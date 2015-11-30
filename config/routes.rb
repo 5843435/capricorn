@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   root 'top#index'
 
-  # アイテム
-  resources :items
+  # アイテム（通常表示不要のためコメントアウト）
+  #resources :items
 
-  # オリジナル商品
-  resources :user_items
+  # オリジナル商品、indexのみ非表示とする
+  resources :user_items, :except => [:index]
 
   # 在庫一覧
   resources :stocks do

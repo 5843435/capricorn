@@ -1,12 +1,6 @@
 class UserItemsController < ApplicationController
   before_action :set_user_item, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  # GET /user_items
-  # GET /user_items.json
-  def index
-    @user_items = Stock.where(:user_id => current_user.id).order("id desc")
-    @user = User.where(:id => current_user.id)
-  end
 
   # GET /user_items/1
   # GET /user_items/1.json
