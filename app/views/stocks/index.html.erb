@@ -146,6 +146,7 @@
         </td>
       </tr>
     <% end %>
+  <% if user_signed_in? %>
     <% @user_items.each do |user_item| %>
       <% end_day = calcEnddayEx(user_item) %> 
        <% remain_day = (( end_day - Time.now ) / ( 60 * 60 * 24 )).truncate %>
@@ -179,6 +180,8 @@
         </td>
       </tr>
     <% end %>
+  <% else %>
+  <% end %>
   </tbody>
 </table>
 <% if user_signed_in? %>

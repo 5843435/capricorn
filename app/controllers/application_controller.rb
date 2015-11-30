@@ -6,21 +6,23 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   helper_method :calcEndday
   helper_method :calcEnddayEx
-  # devise �Ŋe��l������͂ł���悤�ɏC��
+  # devise で各種個人情報を入力できるように修正
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:email, :email_second,  :family_men, :family_women, :zipcode, :address, :notification, :password, :password_confirmation, :current_password) }
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :email_second, :family_men, :family_women, :zipcode, :address, :notification, :password, :password_confirmation, :current_password) }
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :email_second, :family_men, :family_women, :zipcode, :address, :notification, :password, :password_confirmation, :current_password) }
   end
 
-  # devise �Ń��O�C����̃��_�C���N�g���ύX
+  # devise でログイン後のリダイレクト先を変更
   def after_sign_in_path_for(resource)
     stocks_path
   end
+
   def calcEndday(stock)
     end_day = stock.created_at + stock.increase_day.days + ((stock.num * stock.unit) / ( stock.user.family_men*stock.item.spent_men + stock.user.family_women*stock.item.spent_women )).to_i.days
     return end_day
   end
+
   def calcEnddayEx(user_item)
     end_day = user_item.created_at + ((user_item.num * user_item.unit) / ( user_item.user.family_men*user_item.spent_men)).to_i.days
     return end_day
