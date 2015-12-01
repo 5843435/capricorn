@@ -65,6 +65,6 @@ class UserItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_item_params
-      params.require(:user_item).permit(:user_id, :name, :unit, :num, :spent_men)
+      params.require(:user_item).permit(:user_id, :name, :unit, :num, :spent_men, :photo, :remarks)
     end
 end
