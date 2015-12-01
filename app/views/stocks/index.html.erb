@@ -1,6 +1,30 @@
 <% require 'rubygems' %>
 <% require 'active_support' %>
 <%- model_class = Stock -%>
+<link type="text/css" rel="stylesheet"
+  href="http://code.jquery.com/ui/1.10.3/themes/cupertino/jquery-ui.min.css" />
+<script type="text/javascript"
+  src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+<script>
+$(function() {
+  // 2スライダーを適用
+  $('.slider').slider({
+    min: 0,
+    max: 100,
+    step: 2,
+    value: 50,
+    // 3スライダーの変化時にテキストボックスの値表示を更新
+    change: function(e, ui) {
+      //$('#num').val(ui.value);
+      console.log(ui.value);
+    },
+    // 4スライダーの初期化時に、その値をテキストボックスにも反映
+    create: function(e, ui) {
+      $('#num').val($(this).slider('option', 'value'));
+    }
+  });
+});
+</script>
 <div class="page-header">
   <h3>
   <% if user_signed_in? %>
@@ -129,6 +153,7 @@
         <td>
 
 <% if user_signed_in? %>
+           <div class="slider" style="margin:20px;"></div>
           <%= link_to t('.increase_day', :default => t("今日は使ってないよ")),
                       stock_path(stock),
                       #:href => "/stocks/increace_day/#{stock.id}",
