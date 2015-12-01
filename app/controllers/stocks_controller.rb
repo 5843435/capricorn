@@ -21,45 +21,38 @@ class StocksController < ApplicationController
       @stocks = Stock.where(:project_id => @project.id).order("id desc")
       @user_items = ''
     end
+
+    # weekの配列定義
     @week1 = {}
     @week2 = {}
     @week3 = {}
     @week4 = {}
     @week5 = {}
-    @stocks.each do |stock|
-      end_day =  calcEndday(stock) 
-      if end_day <= Time.now
-      elsif end_day < (Time.now + 1.week)
-        @week1.store(stock.item.id, stock.item.name)
-      elsif ((Time.now + 1.week) <= end_day) && (end_day < (Time.now + 2.week))
-        @week2.store(stock.item.id, stock.item.name)
-      elsif ((Time.now + 2.week) <= end_day) && (end_day < (Time.now + 3.week))
-        @week3.store(stock.item.id, stock.item.name)
-      elsif ((Time.now + 3.week) <= end_day) && (end_day < (Time.now + 4.week))
-        @week4.store(stock.item.id, stock.item.name)
-      else
-        @week5.store(stock.item.id, stock.item.name)
-      end
 
+    @stocks.each do |stock|
       # ログインしていないとcalcEnddayが使えないので下記記述
       if user_signed_in? then
         end_day =  calcEndday(stock) 
       else
         end_day = stock.created_at + stock.increase_day.days + ((stock.num * stock.unit) / ( stock.item.spent_men + stock.item.spent_women )).to_i.days
       end
-
+     
       if end_day <= Time.now
-      elsif end_day < (Time.now + 1.week)
-        @week1.store(stock.item.id, stock.item.name)
-      elsif ((Time.now + 1.week) <= end_day) && (end_day < (Time.now + 2.week))
-        @week2.store(stock.item.id, stock.item.name)
-      elsif ((Time.now + 2.week) <= end_day) && (end_day < (Time.now + 3.week))
-        @week3.store(stock.item.id, stock.item.name)
-      elsif ((Time.now + 3.week) <= end_day) && (end_day < (Time.now + 4.week))
-        @week4.store(stock.item.id, stock.item.name)
-      else
-        @week5.store(stock.item.id, stock.item.name)
+        elsif end_day < (Time.now + 1.week)
+          @week1.store(stock.item.id, stock.item.name)
+        elsif ((Time.now + 1.week) <= end_day) && (end_day < (Time.now + 2.week)  )
+          @week2.store(stock.item.id, stock.item.name)
+        elsif ((Time.now + 2.week) <= end_day) && (end_day < (Time.now + 3.week)  )
+          @week3.store(stock.item.id, stock.item.name)
+        elsif ((Time.now + 3.week) <= end_day) && (end_day < (Time.now + 4.week)  )
+          @week4.store(stock.item.id, stock.item.name)
+        else
+          @week5.store(stock.item.id, stock.item.name)
       end
+    end
+
+      # ログインしていないとcalcEnddayが使えないので下記記述
+    if user_signed_in? then
       #オリジナルアイテム
       @user_items.each do |user_item|
         end_day =  calcEnddayEx(user_item)
@@ -76,8 +69,10 @@ class StocksController < ApplicationController
           @week5.store('', user_item.name)
         end
       end
+    else
     end
   end
+
   def search
     @tempstock = Stock.with_deleted.where(:user_id => current_user.id)
     @search = @tempstock.search(params[:q])

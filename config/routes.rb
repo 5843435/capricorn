@@ -1,13 +1,20 @@
 Rails.application.routes.draw do
-  resources :user_items
-  resources :stocks
+  root 'top#index'
 
+  # ¥¢¥¤¥Æ¥à¡ÊÄÌ¾ïÉ½¼¨ÉÔÍ×¤Î¤¿¤á¥³¥á¥ó¥È¥¢¥¦¥È¡Ë
+  #resources :items
+
+  # ¥ª¥ê¥¸¥Ê¥ë¾¦ÉÊ¡¢index¤Î¤ßÈóÉ½¼¨¤È¤¹¤ë
+  resources :user_items, :except => [:index]
+
+  # ºß¸Ë°ìÍ÷
   resources :stocks do
     collection do
       match 'search' => 'stocks#search', via: [:get, :post], as: :search
     end
   end
 
+  # Èó¥í¥°¥¤¥ó¥æ¡¼¥¶ÍÑºß¸Ë°ìÍ÷
   resources :projects, param: :key, :shallow => true do
     resources :stocks do
       collection do
@@ -16,24 +23,10 @@ Rails.application.routes.draw do
     end
   end
 
-  #resources :stocks do
-  #  collection do
-  #   put 'increase_day'
-  #   patch 'increase_day'
-  #  end
-  #end
-
-  resources :items
-
-  # JANƒR[ƒh¤•iŒŸõ—p
+  # JAN¥³¡¼¥É¾¦ÉÊ¸¡º÷ÍÑ
   get '/rakuten/search'
 
+  # devise ¥æ¡¼¥¶ÅÐÏ¿ÍÑ
   devise_for :users, controllers: { registrations: 'users/registrations' }
-  get 'top/index'
-
-  post 'type/index' => 'type#index'
-
-  root 'top#index'
-
 
 end

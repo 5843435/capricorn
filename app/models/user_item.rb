@@ -8,8 +8,8 @@ class UserItem < ActiveRecord::Base
   validates :unit, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
   validates :num, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
 
-  # 消費量は入力必須
-  validates :spent_men, presence: true
+  # 消費量は入力必須、数値型で0より大きくなければならない
+  validates :spent_men,  numericality: { greater_than: 0 }
 
   # photoをattachファイルとする。stylesで画像サイズを定義できる
   has_attached_file :photo, styles: { medium: "300x300>", thumb: "100x100>" }
