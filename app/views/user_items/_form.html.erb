@@ -1,15 +1,19 @@
-<%= form_for(@user_item) do |f| %>
+<%= form_for @user_item, :html => { :class => "form-horizontal stock" } do |f| %>
   <% if @user_item.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user_item.errors.count, "error") %> prohibited this user_item from being saved:</h2>
-
-      <ul>
-      <% @user_item.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @user_item.errors.count %> つのエラーがあります</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @user_item.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
+
   <% user_id = current_user.id %>
 
   <div class="control-group">
