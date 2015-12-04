@@ -6582,3 +6582,13 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+
+.s-btn {
+    width: 105px;
+    height: 20px;
+}
+.s-btn .translation_missing {
+    position: relative;
+    right: 22px;
+    font-size: 60%;
+}
