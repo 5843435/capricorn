@@ -91,4 +91,10 @@ Rails.application.configure do
     :domain => 'rails-capricorn.herokuapp.com', 
   }
 
+  # For heroku_rails_deflate (gem)
+  config.serve_static_assets = true
+  config.assets.compress = true
+  config.assets.compile = true
+  config.assets.digest = true
+
 end
