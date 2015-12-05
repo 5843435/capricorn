@@ -6,8 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application', acync: 'acync' %>
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.1/css/materialize.min.css' />
+  <%= stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.1/css/materialize.min.css" %>
+<%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.1/js/materialize.min.js', acync: 'acync' %>
+
+  <!-- <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.1/css/materialize.min.css' />
   <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.1/js/materialize.min.js'></script>  
+  -->
   <%= csrf_meta_tags %>
 
 </head>
