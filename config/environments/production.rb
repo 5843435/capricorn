@@ -93,6 +93,7 @@ Rails.application.configure do
 
   # For heroku_rails_deflate (gem)
   config.serve_static_files = true
+  config.static_cache_control = "public, max-age=604800"
   config.assets.compress = true
   config.assets.compile = true
   config.assets.digest = true
