@@ -142,7 +142,7 @@
                       :class => 'btn btn-xs btn-danger' %>
 
           <%= link_to t('.charge', :default => t("満タンにするよ")),
-                      charge_stocks_path(stock),
+                      charge_stocks_path({id: stock.id.to_s}),
                       #('/stocks/charge/' + stock.id.to_s),
                       :method => :post,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => '満タンにしますか？')) },

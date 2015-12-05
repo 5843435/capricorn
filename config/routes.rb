@@ -12,6 +12,9 @@ Rails.application.routes.draw do
     collection do
       match 'search' => 'stocks#search', via: [:get, :post], as: :search
     end
+    collection do
+      post 'charge'
+    end
   end
 
   # 非ログインユーザ用在庫一覧

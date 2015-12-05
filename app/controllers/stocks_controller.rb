@@ -1,5 +1,5 @@
 class StocksController < ApplicationController
-  before_action :set_stock, only: [:show, :edit, :update, :destroy, :increase_day]
+  before_action :set_stock, only: [:show, :edit, :update, :destroy, :increase_day, :charge]
   #before_action :authenticate_user!
 
   # 登録画面を選択ボックス方式にするためモデルからデータを取り出す記述
@@ -188,6 +188,19 @@ class StocksController < ApplicationController
     #  format.html { redirect_to stocks_url, notice: '日付を増やしました' }
     #  format.json { head :no_content }
     #end
+  end
+
+  def charge
+    @copy = @stock.dup
+    @now = Time.now
+    @copy.created_at = @now
+    @copy.updated_at = @now
+    @copy.save
+    @stock.destroy
+    respond_to do |format|
+      format.html { redirect_to stocks_url}
+      format.json { head :no_content }
+    end
   end
 
   private
