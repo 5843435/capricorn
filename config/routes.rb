@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
   root 'top#index'
 
-  # ¥¢¥¤¥Æ¥à¡ÊÄÌ¾ïÉ½¼¨ÉÔÍ×¤Î¤¿¤á¥³¥á¥ó¥È¥¢¥¦¥È¡Ë
+  # ã‚¢ã‚¤ãƒ†ãƒ ï¼ˆé€šå¸¸è¡¨ç¤ºä¸è¦ã®ãŸã‚ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆï¼‰
   #resources :items
 
-  # ¥ª¥ê¥¸¥Ê¥ë¾¦ÉÊ¡¢index¤Î¤ßÈóÉ½¼¨¤È¤¹¤ë
+  # ã‚ªãƒªã‚¸ãƒŠãƒ«å•†å“ã€indexã®ã¿éè¡¨ç¤ºã¨ã™ã‚‹
   resources :user_items, :except => [:index]
 
-  # ºß¸Ë°ìÍ÷
+  # åœ¨åº«ä¸€è¦§
   resources :stocks do
     collection do
       match 'search' => 'stocks#search', via: [:get, :post], as: :search
@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     end
   end
 
-  # Èó¥í¥°¥¤¥ó¥æ¡¼¥¶ÍÑºß¸Ë°ìÍ÷
+  # éãƒ­ã‚°ã‚¤ãƒ³ãƒ¦ãƒ¼ã‚¶ç”¨åœ¨åº«ä¸€è¦§
   resources :projects, param: :key, :shallow => true do
     resources :stocks do
       collection do
@@ -26,10 +26,14 @@ Rails.application.routes.draw do
     end
   end
 
-  # JAN¥³¡¼¥É¾¦ÉÊ¸¡º÷ÍÑ
+  # JANã‚³ãƒ¼ãƒ‰å•†å“æ¤œç´¢ç”¨
   get '/rakuten/search'
 
-  # devise ¥æ¡¼¥¶ÅĞÏ¿ÍÑ
+  # devise ãƒ¦ãƒ¼ã‚¶ç™»éŒ²ç”¨
   devise_for :users, controllers: { registrations: 'users/registrations' }
+
+  get '/top/agreement'
+  get '/top/privacy'
+  get '/top/inquiry'
 
 end
