@@ -197,7 +197,12 @@
             :class => 'btn btn-primary s-btn' %>
 <%#= link_to '過去の履歴を見る', search_stocks_path, :class => 'btn btn-info' %>
 <% else %>
-  <%= link_to t('.new', :default => t("helpers.links.new")),
+  <%= link_to t('.new', :default => t("商品新規登録")),
             new_project_stock_path,
             :class => 'btn btn-primary s-btn' %>
+<br>
+<br>
+メール通知機能などが使いたい方はこちら
+<br>
+<%= link_to 'ユーザー登録', new_user_registration_path, :class => "btn btn-dark" %>
 <% end %>
