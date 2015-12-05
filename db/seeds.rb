@@ -2,7 +2,7 @@ Item.create!([
   {name: "トイレットペーパー", spent_men: 3.5, spent_women: 12.5, spent_child: nil},
   {name: "ティッシュペーパー", spent_men: 10.0, spent_women: 15.0, spent_child: nil},
   {name: "ボディソープ", spent_men: 5.0, spent_women: 5.0, spent_child: nil},
-  {name: "洗濯洗剤", spent_men: 16.5, spent_women: 16.5, spent_child: nil},
+  {name: "洗濯洗剤", spent_men: 2.8, spent_women: 3.0, spent_child: nil},
   {name: "シャンプー", spent_men: 4.5, spent_women: 9.0, spent_child: nil}
 ])
 Stock.create!([

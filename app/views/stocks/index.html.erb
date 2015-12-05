@@ -159,12 +159,12 @@ $(function() {
                       #:href => "/stocks/increace_day/#{stock.id}",
                       :method => :put,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'なくなる日を１日増やしますか？')) },
-                      :class => 'btn btn-xs btn-success' %>
+                      :class => 'btn btn-xs btn-success s-btn' %>
           <%= link_to t('.destroy', :default => t("もう無くなったよ")),
                       stock_path(stock),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => '本当に削除しますか？')) },
-                      :class => 'btn btn-xs btn-danger' %>
+                      :class => 'btn btn-xs btn-danger s-btn' %>
 <% else %>
 ゲストモードでは使えません
 <% end %>
@@ -201,7 +201,7 @@ $(function() {
                       user_item_path(user_item),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => '本当に削除しますか？')) },
-                      :class => 'btn btn-xs btn-danger' %>
+                      :class => 'btn btn-xs btn-danger s-btn' %>
         </td>
       </tr>
     <% end %>
@@ -219,10 +219,15 @@ $(function() {
 <% if user_signed_in? %>
 　<%= link_to t('.new', :default => t("helpers.links.new")),
             new_stock_path,
-            :class => 'btn btn-primary' %>
+            :class => 'btn btn-primary s-btn' %>
 <%#= link_to '過去の履歴を見る', search_stocks_path, :class => 'btn btn-info' %>
 <% else %>
-  <%= link_to t('.new', :default => t("helpers.links.new")),
+  <%= link_to t('.new', :default => t("商品新規登録")),
             new_project_stock_path,
-            :class => 'btn btn-primary' %>
+            :class => 'btn btn-primary s-btn' %>
+<br>
+<br>
+メール通知機能などが使いたい方はこちら
+<br>
+<%= link_to 'ユーザー登録', new_user_registration_path, :class => "btn btn-dark" %>
 <% end %>
