@@ -2315,3 +2315,15 @@ if (typeof jQuery === 'undefined') {
   })
 
 }(jQuery);
+
+$(function () {
+  var ua = navigator.userAgent;
+  if( ua.indexOf('iPhone') > 0 || (ua.indexOf('Android') > 0 && ua.indexOf('Mobile') > 0) ) { 
+  //var w = $(window).width();
+  //var x = 768;
+  //if (w <= x) {
+    $(".table").addClass("smt-table");
+    //$("#stock_title").after('<div class="smt-nodisp">')
+    $(".smt-nodisp").css("display", "none");
+  }
+});
