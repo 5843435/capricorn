@@ -7,28 +7,37 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.1/css/materialize.min.css' />
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.1/js/materialize.min.js'></script>  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src='https://code.jquery.com/ui/1.10.4/jquery-ui.min.js'></script>
+    <script>
+  $(function() {
+    $( document ).tooltip();
+  });
+  </script>
   <%= csrf_meta_tags %>
 
 </head>
 <body>
 
-    <!-- Navigation -->
-    <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
-    <nav id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
-            <% if user_signed_in? %>
-                <li><%= link_to 'マイページ', stocks_path %></li>
-                <li><%= link_to 'プロフィール変更', edit_user_registration_path %></li>
-                <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-            <% else %>
-                <li><%= link_to 'サインアップ', new_user_registration_path %></li>
-                <li><%= link_to 'ログイン', new_user_session_path %></li>
-                <li><%= link_to 'ユーザ登録せずに利用', new_project_path %></li>
-            <% end %>
-        </ul>
-    </nav>
+   <!-- Navigation -->
+  <div class="toc-wrapper pinned" style="top: 0px;">
+  <div class="fixed-action-btn" style="bottom: 100px; right: 24px;">
+    <a class="btn-floating btn-large green" >
+      <i class="large material-icons">menu</i>
+    </a>
+    <ul>
+    <% if user_signed_in? %>
+      <li><a href=<%= stocks_path %>  title="マイページ" class="btn-floating red"><i class="material-icons">store</i></a></li>
+      <li><a href=<%= edit_user_registration_path %> title="プロフィール変更" class="btn-floating yellow darken-1"><i class="material-icons">person_pin</i></a></li>
+      <li><a href=<%= destroy_user_session_path %> title="ログアウト" data-method="delete" class="btn-floating green"><i class="material-icons">play_for_work</i></a></li>
+    <% else %>
+      <li><a href=<%= new_user_registration_path %>  title="サインアップ" class="btn-floating red"><i class="material-icons">done</i></a></li>
+      <li><a href=<%= new_user_session_path %> title="ログイン" class="btn-floating green"><i class="material-icons">input</i></a></li>
+      <li><a href=<%= new_project_path %> title="ユーザ登録せずに利用" class="btn-floating yellow darken-1"><i class="material-icons">stars</i></a></li>
+    <% end %>
+    </ul>
+  </div>
+  </div>
 
 <div class="container">
   <div class="row">
