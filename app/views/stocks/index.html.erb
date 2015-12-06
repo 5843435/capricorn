@@ -134,19 +134,24 @@
                       #:href => "/stocks/increace_day/#{stock.id}",
                       :method => :put,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'なくなる日を１日増やしますか？')) },
-                      :class => 'btn btn-xs btn-success s-btn' %>
+                      :class => 'btn btn-xs btn-success s-btn',
+                      :style => 'width: 125px; color: #fff; background-color: #5cb85c; border-color: #4cae4c;'
+          %>
           <%= link_to t('.destroy', :default => t("もう無くなったよ")),
                       stock_path(stock),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => '本当に削除しますか？')) },
-                      :class => 'btn btn-xs btn-danger s-btn' %>
-
-          <%= link_to t('.charge', :default => t("満タンにするよ")),
+                      :class => 'btn btn-xs btn-danger s-btn',
+                      :style => 'width: 125px; color: #fff; background-color: #d9534f; border-color: #d43f3a;'     
+          %>
+          <%= link_to t('.charge', :default => t("いつもと同じ数だけ補充")),
                       charge_stocks_path({id: stock.id.to_s}),
                       #('/stocks/charge/' + stock.id.to_s),
                       :method => :post,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => '満タンにしますか？')) },
-                      :class => 'btn btn-xs btn-danger s-btn' %>
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'いつもと同じ数だけ補充しますか？')) },
+                      :class => 'btn btn-xs btn-success s-btn',
+                      :style => 'width: 125px; color: #fff; background-color: #337ab7; border-color: #2e6da4;'
+          %>
 <% else %>
 ゲストモードでは使えません
 <% end %>
@@ -183,7 +188,9 @@
                       user_item_path(user_item),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => '本当に削除しますか？')) },
-                      :class => 'btn btn-xs btn-danger s-btn' %>
+                      :class => 'btn btn-sm btn-danger s-btn',
+                      :style => 'width: 125px; color: #fff; background-color: #d9534f; border-color: #d43f3a;'
+           %>
         </td>
       </tr>
     <% end %>
@@ -192,8 +199,9 @@
   </tbody>
 </table>
 <% if user_signed_in? %>
-※商品を削除するときは「もうなくなったよ」ボタンを押してね<br>
-※商品を使用していないときや、なくなる日の調整を行いたいときは「今日は使ってないよ」ボタンを押してね<br>
+※商品を削除するときは、「もうなくなったよ」ボタンを押してね<br>
+※商品を使用していないときや、なくなる日の調整を行いたいときは、「今日は使ってないよ」ボタンを押してね<br>
+※商品を最初に登録した個数・単位分だけ補充する場合は、「いつもと同じ数だけ補充」ボタンを押してね<br>
 <br>
 <% else %>
 <% end %>
