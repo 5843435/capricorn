@@ -36,6 +36,8 @@
           <% @week1.each do |key, value| %>
             <% if key != '' %>
             <img width="30" height="30" src="/assets/icons/<%= key %>.png">
+            <% else %>
+            <img width="30" height="30" src="/assets/icons/panda7.png"> 
             <% end %>
           <%= value %>
           <% end %>&nbsp;
@@ -47,6 +49,8 @@
           <% @week2.each do |key, value| %>
             <% if key != '' %>
             <img width="30" height="30" src="/assets/icons/<%= key %>.png">
+            <% else %>
+            <img width="30" height="30" src="/assets/icons/panda7.png"> 
             <% end %>
           <%= value %>
           <% end %>&nbsp;
@@ -58,6 +62,8 @@
           <% @week3.each do |key, value| %>
             <% if key != '' %>
             <img width="30" height="30" src="/assets/icons/<%= key %>.png">
+            <% else %>
+            <img width="30" height="30" src="/assets/icons/panda7.png"> 
             <% end %>
           <%= value %>
           <% end %>&nbsp;
@@ -69,6 +75,8 @@
           <% @week4.each do |key, value| %>
             <% if key != '' %>
             <img width="30" height="30" src="/assets/icons/<%= key %>.png">
+            <% else %>
+            <img width="30" height="30" src="/assets/icons/panda7.png"> 
             <% end %>
           <%= value %>
           <% end %>&nbsp;
@@ -80,6 +88,8 @@
           <% @week5.each do |key, value| %>
             <% if key != '' %>
             <img width="30" height="30" src="/assets/icons/<%= key %>.png">
+            <% else %>
+            <img width="30" height="30" src="/assets/icons/panda7.png"> 
             <% end %>
           <%= value %>
           <% end %>&nbsp;
@@ -109,18 +119,18 @@
        <% remain_day = (( end_day - Time.now ) / ( 60 * 60 * 24 )).truncate %>
        <% if (( end_day - Time.now ) / ( 60 * 60 * 24 )).truncate < 0 %><% next %><% end %>
       <tr>
-        <td id="stock_title">
+        <td class="stock_title">
 <% if user_signed_in? %>
   <%= link_to stock.item.name, stock if stock.item %>
 <% else %>
   <%= stock.item.name %>
 <% end %>
         </td>
-        <td id="stock_insdate"><%= stock.updated_at.strftime("%Y %m/%d") %></td>
-        <td id="stock_enddate"><%= end_day.year %>&nbsp;<%= end_day.month %>/<%= end_day.day %>
+        <td class="stock_insdate"><%= stock.updated_at.strftime("%Y/%m/%d") %></td>
+        <td class="stock_enddate"><%= end_day.year %>/<%= end_day.month %>/<%= end_day.day %>
             （あと<%= remain_day %>日）</td>
               <% remain_num = stock.num * (end_day - Time.now) / (end_day - stock.updated_at) %>
-        <td id="stocks">
+        <td class="stocks">
               <% if remain_num >= 1 %>
             　  <% instance_div = remain_num.floor.div(10) %>
                 <% instance_div.times { %>
@@ -141,7 +151,7 @@
                   <% end %>
               <% end %>
     　　　</td>
-          <td id="benri"> 
+          <td class="benri"> 
                 <% if user_signed_in? %>
                 <%= link_to t('.increase_day', :default => t("今日は使ってないよ")),
                             stock_path(stock),
@@ -166,12 +176,12 @@
        <% remain_day = (( end_day - Time.now ) / ( 60 * 60 * 24 )).truncate %>
        <% if (( end_day - Time.now ) / ( 60 * 60 * 24 )).truncate < 0 %><% next %><% end %>
       <tr>
-        <td id="stock_title"><%= link_to user_item.name, user_item if user_item.id %></td>
-        <td id="stock_insdate"><%= user_item.updated_at.strftime("%Y %m/%d") %></td>
-        <td id="stock_enddate"><%= end_day.year %>&nbsp;<%= end_day.month %>/<%= end_day.day %>
+        <td class="stock_title"><%= link_to user_item.name, user_item if user_item.id %></td>
+        <td class="stock_insdate"><%= user_item.updated_at.strftime("%Y/%m/%d") %></td>
+        <td class="stock_enddate"><%= end_day.year %>/<%= end_day.month %>/<%= end_day.day %>
           （あと<%= remain_day %>日）</td>
             <% remain_num = user_item.num * (end_day - Time.now) / (end_day - user_item.updated_at) %>
-        <td id="stocks">
+        <td class="stocks">
             <% if remain_num >= 1 %>
                 <img width="30" height="30" src="/assets/icons/panda7.png">
                 <%= remain_num.floor %>個
@@ -185,7 +195,7 @@
                 <% end %>
             <% end %>
   　　　</td>
-        <td id="benri">
+        <td class="benri">
           <%= link_to t('.destroy', :default => t("もう無くなったよ")),
                       user_item_path(user_item),
                       :method => :delete,

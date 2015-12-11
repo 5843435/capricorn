@@ -2330,5 +2330,20 @@ $(function () {
     $("#table-head2").css("display", "none");
     $("#table-head1").parent().parent().before("<br><h5>買い足しどきカレンダー</h5>");
     $("#table-head2").after("<h5>家にあるものリスト</h5>");
+    $(".stock_title").each(function(){
+      $(this).html("<h6>商品名:"+$(this).html()+"</h6>");
+    });
+    $(".stock_insdate").each(function(){
+      $(this).html("登録日:"+$(this).html());
+    });
+    $(".stock_enddate").each(function(){
+      $(this).html("なくなる日:"+$(this).html());
+    });
+    $(".stocks").each(function(){
+      $(this).html("残り:"+$(this).html());
+    });
+    //$(".benri").each(function(){
+    //  $(this).html("便利ボタン<br>"+$(this).html());
+    //});
   }
 });
