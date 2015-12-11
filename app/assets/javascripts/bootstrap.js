@@ -2325,5 +2325,10 @@ $(function () {
     $(".table").addClass("smt-table");
     //$("#stock_title").after('<div class="smt-nodisp">')
     $(".smt-nodisp").css("display", "none");
+    $("#table-head1").css("display", "none");
+    //$("#table-head1").val();
+    $("#table-head2").css("display", "none");
+    $("#table-head1").parent().parent().before("<br><h5>買い足しどきカレンダー</h5>");
+    $("#table-head2").after("<h5>家にあるものリスト</h5>");
   }
 });
