@@ -6592,3 +6592,11 @@ button.close {
     right: 22px;
     font-size: 60%;
 }
+.smt-table > thead > tr > th,
+.smt-table > tbody > tr > th,
+.smt-table > tfoot > tr > th,
+.smt-table > thead > tr > td,
+.smt-table > tbody > tr > td,
+.smt-table > tfoot > tr > td {
+  display: block;
+}
