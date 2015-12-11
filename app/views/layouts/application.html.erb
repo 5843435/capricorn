@@ -22,10 +22,11 @@
                 <li><%= link_to 'マイページ', stocks_path %></li>
                 <li><%= link_to 'プロフィール変更', edit_user_registration_path %></li>
                 <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+                <li><%= link_to 'トップへ戻る',  root_path %></li>
             <% else %>
                 <li><%= link_to 'サインアップ', new_user_registration_path %></li>
                 <li><%= link_to 'ログイン', new_user_session_path %></li>
-                <li><%= link_to 'ユーザ登録せずに利用', new_project_path %></li>
+                <li><%= link_to 'ユーザ登録せずに利用', new_project_path %></li>                <li><%= link_to 'トップへ戻る',  root_path %></li>
             <% end %>
         </ul>
     </nav>

@@ -21,7 +21,7 @@
     <%= f.label :"家族構成[必須]", class: "col-sm-2 control-label" %>
     <div class="col-sm-6 form-inline">
 男：<%= f.select :family_men, {"0" => "0", "1" => "1", "2" => "2", "3" => "3", "4" => "4", "5" => "5", "6" => "6", "7" => "7"}, {:selected => 1}, {:class => 'form-control'} %>
-女：<%= f.select :family_women, {"0" => "0", "1" => "1", "2" => "2", "3" => "3", "4" => "4", "5" => "5", "6" => "6", "7" => "7"}, {}, {:class => 'form-control'} %> ※入力した情報で日用品の消費量を算出します
+女：<%= f.select :family_women, {"0" => "0", "1" => "1", "2" => "2", "3" => "3", "4" => "4", "5" => "5", "6" => "6", "7" => "7"}, {}, {:class => 'form-control'} %> ※日用品の消費量を算出します
     </div>
   </div>
 
