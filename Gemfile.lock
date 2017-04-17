@@ -87,6 +87,10 @@ GEM
       faraday (>= 0.7.4, < 0.10)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    heroku_rails_deflate (1.0.3)
+      actionpack (>= 3.2.13)
+      activesupport (>= 3.2.13)
+      rack (>= 1.4.5)
     hirb (0.7.3)
     hirb-unicode (0.0.5)
       hirb (~> 0.5)
@@ -277,6 +281,7 @@ DEPENDENCIES
   database_cleaner (~> 1.2.0)
   devise
   factory_girl_rails (~> 4.4.1)
+  heroku_rails_deflate
   hirb
   hirb-unicode
   jbuilder (~> 2.0)

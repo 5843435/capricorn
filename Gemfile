@@ -48,6 +48,9 @@ gem 'devise'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+#heroku_rails_deflate
+gem 'heroku_rails_deflate', :group => :production
+
 group :development, :test do
   gem 'sqlite3'
   gem 'sqlite3-ruby', :require => 'sqlite3'
